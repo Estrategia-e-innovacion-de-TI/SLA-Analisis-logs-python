@@ -20,20 +20,104 @@ import torch.nn as nn
 import torch.optim as optim
 
 
-class Autoencoder(nn.Module):
-    """Autoencoder neural network for anomaly detection."""
+class Encoder(nn.Module):
+    """
+    Encoder neural network for anomaly detection.
     
-    def __init__(self, input_dim, hidden_dims=None, latent_dim=8):
-        # Initialize model architecture
-        pass
+    This class implements an encoder with configurable architecture
+    for encoding input features to a latent space representation.
+    """
+    def __init__(self, n_features, seq_len, num_layers, latent_dim=20):
+        """
+        Initialize the encoder model.
+        
+        Args:
+            n_features (int): Dimension of input features
+            seq_len (int): Length of input sequence
+            latent_dim (int): Dimension of the latent space representation
+        """
+        super(Encoder, self).__init__()
+        
+        self.seq_len, self.n_features = seq_len, n_features
+        self.latent_dim = latent_dim
+        
+        self.rnn = nn.LSTM(
+        input_size=n_features,
+        hidden_size=latent_dim,
+        num_layers=num_layers,
+        batch_first=True
+        )
         
     def forward(self, x):
-        # Forward pass through the autoencoder
-        pass
+        x = x.reshape((1, self.seq_len, self.n_features))
+        _, (hidden_n, _) = self.rnn(x)
+        return hidden_n.reshape((self.n_features, self.embedding_dim))
     
-    def encode(self, x):
-        # Encode input to latent representation
-        pass
+
+class Decoder(nn.Module):
+    """
+    Decoder neural network for anomaly detection.
+    
+    This class implements a decoder with configurable architecture
+    for decoding latent space representation to output features.
+    """
+    def __init__(self, n_features, seq_len, input_dim=20):
+        """
+        Initialize the decoder model.
+        
+        Args:
+            n_features (int): Dimension of output features
+            seq_len (int): Length of output sequence
+            input_dim (int): Dimension of the latent space representation
+        """
+        super(Decoder, self).__init__()
+
+        self.seq_len, self.input_dim = seq_len, input_dim
+        self.hidden_dim, self.n_features = 2 * input_dim, n_features
+
+        self.rnn = nn.LSTM(
+        input_size=input_dim,
+        hidden_size=self.hidden_dim,
+        num_layers=1,
+        batch_first=True
+        )
+        self.output_layer = nn.Linear(self.hidden_dim, n_features)
+
+    def forward(self, x):
+        x = x.repeat(self.seq_len, self.n_features)
+        
+        x = x.reshape((self.n_features, self.seq_len, self.input_dim))
+        x, (hidden_n, cell_n) = self.rnn(x)
+        x = x.reshape((self.seq_len, self.hidden_dim))
+
+        return self.output_layer(x)
+
+class Autoencoder(nn.Module):
+    """
+    Autoencoder neural network for anomaly detection.
+    
+    This class implements an autoencoder with configurable architecture
+    for encoding and decoding input features.
+    """
+    def __init__(self, n_features, seq_len, latent_dim=20):
+        """
+        Initialize the autoencoder model.
+        
+        Args:
+            n_features (int): Dimension of input features
+            seq_len (int): Length of input sequence
+            latent_dim (int): Dimension of the latent space representation
+        """        
+        super(Autoencoder, self).__init__()
+        
+        self.encoder = Encoder(n_features, seq_len, latent_dim)
+        self.decoder = Decoder(n_features, seq_len, latent_dim)
+    
+    def forward(self, x):
+        encoded = self.encoder(x)
+        decoded = self.decoder(encoded)
+        
+        return decoded
 
 
 class AutoencoderDetector:
@@ -68,9 +152,3 @@ class AutoencoderDetector:
     def load_model(self, path):
         # Load model from disk
         pass
-
-
-# Main entry point
-if __name__ == "__main__":
-    # Simple example usage
-    pass
