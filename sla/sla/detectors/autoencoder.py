@@ -186,15 +186,18 @@ class AutoencoderDetector:
         self.scaler = StandardScaler()
         self.threshold = None
         
-    def fit(self, X):
+    def fit(self, X, X_test=None):
         """
         Fit the anomaly detector to the input data.
         
         Args:
             X (np.ndarray): Input data for training the model
         """
-        #X_scaled = self.scaler.fit_transform(X)
-        X_scaled = torch.tensor(X, dtype=torch.float32)
+        self.scaler = self.scaler.fit(X)
+        X_scaled = self.scaler.transform(X)
+        X_scaled = torch.tensor(X_scaled, dtype=torch.float32)
+        X_test_scaled = self.scaler.transform(X_test) if X_test is not None else None
+        X_test_scaled = torch.tensor(X_test_scaled, dtype=torch.float32) if X_test is not None else None
         
         self.model = self.model.to(self.device)
         
@@ -215,8 +218,21 @@ class AutoencoderDetector:
 
                 train_losses.append(loss.item())
 
-            train_loss = np.mean(train_losses)
+            val_losses = []
+            if X_test is not None:
+                self.model = self.model.eval()
+                with torch.no_grad():
+                    for seq_true in X_test:
+
+                        seq_true = seq_true.to(self.device)
+                        seq_pred = self.model(seq_true)
+                        seq_pred = seq_pred.reshape((seq_pred.shape[0],))
+                        loss = self.criterion(seq_pred, seq_true)
+                        val_losses.append(loss.item())
+                val_loss = np.mean(val_losses)
+                print(f'Epoch {epoch}, Train Loss: {np.mean(train_losses):.4f}, Val Loss: {val_loss:.4f}')
             
+            train_loss = np.mean(train_losses)
             print(f'Epoch {epoch}, Train Loss: {train_loss:.4f}')
 
             if train_loss < best_loss:
