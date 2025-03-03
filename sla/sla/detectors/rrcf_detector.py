@@ -2,22 +2,23 @@
 import numpy as np
 import pandas as pd
 import rrcf
+from sklearn.base import BaseEstimator
 
 
-class RRCFDetector:
+class RRCFDetector(BaseEstimator):
     """Robust Random Cut Forest anomaly detector.
 
-    This class implements anomaly detection using the Robust Random Cut Forest
-    algorithm for streaming anomaly detection.
+    Esta clase implementa la detección de anomalías utilizando el algoritmo
+    Robust Random Cut Forest para la detección de anomalías en streaming.
 
     Parameters
     ----------
     shingle_size : int, default=15
-        Size of the shingling window.
+        Tamaño de la ventana de shingling.
     num_trees : int, default=100
-        Number of trees in the random forest.
+        Número de árboles en el bosque aleatorio.
     tree_size : int, default=500
-        Maximum size of each tree in the forest.
+        Tamaño máximo de cada árbol en el bosque.
     """
 
     def __init__(self, shingle_size=15, num_trees=100, tree_size=500):
@@ -28,7 +29,7 @@ class RRCFDetector:
         self.index = None
         self.anomaly_scores = None
 
-    def fit(self, X):
+    def fit(self, X, y=None):
         """Fit the model to the input data.
 
         Parameters
@@ -84,7 +85,7 @@ class RRCFDetector:
         
         return scores / self.num_trees  # Normalize by number of trees
 
-    def fit_predict(self, X):
+    def fit_predict(self, X, y=None):
         """Fit the model and calculate anomaly scores.
 
         Parameters
