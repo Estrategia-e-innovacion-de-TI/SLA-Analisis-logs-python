@@ -1,14 +1,15 @@
 from sklearn.ensemble import IsolationForest
+from sklearn.base import BaseEstimator
 import numpy as np
 
-class IsolationForestDetector:
+class IsolationForestDetector(BaseEstimator):
     """
     A detector for identifying anomalies using the Isolation Forest algorithm.
 
     Parameters
     ----------
     n_estimators : int, optional (default=100)
-        The number of  base estimators in the ensemble.
+        The number of base estimators in the ensemble.
     max_samples : int or float, optional (default='auto')
         The number of samples to draw from X to train each base estimator.
         If 'auto', then max_samples=min(256, n_samples).
@@ -30,15 +31,20 @@ class IsolationForestDetector:
         Compute the anomaly score of each sample.
     """
     def __init__(self, n_estimators=100, max_samples='auto', contamination='auto', random_state=None):
+        self.n_estimators = n_estimators
+        self.max_samples = max_samples
+        self.contamination = contamination
+        self.random_state = random_state
         self.model = IsolationForest(
-            n_estimators=n_estimators,
-            max_samples=max_samples,
-            contamination=contamination,
-            random_state=random_state
+            n_estimators=self.n_estimators,
+            max_samples=self.max_samples,
+            contamination=self.contamination,
+            random_state=self.random_state
         )
 
-    def fit(self, X):
+    def fit(self, X, y=None):
         self.model.fit(X)
+        return self
         
     def predict(self, X):
         return self.model.predict(X)
@@ -46,7 +52,7 @@ class IsolationForestDetector:
     def decision_function(self, X):
         return self.model.decision_function(X)
         
-    def fit_predict(self, X):
+    def fit_predict(self, X, y=None):
         return self.model.fit_predict(X)
         
     def get_anomalies(self, X):
