@@ -1,7 +1,7 @@
 [project]
 name = "sla-analisis-logs-python"
 version = "0.1.0"
-description = "Add your description here"
+description = "Analisis de logs en python"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
