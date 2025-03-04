@@ -5,7 +5,7 @@ from typing import Union, List, Optional, Dict, Any, Callable
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
-class RollingAggregateTransformer(BaseEstimator, TransformerMixin):
+class RollingAgregator(BaseEstimator, TransformerMixin):
     """Rolling aggregate transformer for anomaly detection pipelines.
     
     This transformer computes rolling window aggregations on time series data,
@@ -100,7 +100,7 @@ class RollingAggregateTransformer(BaseEstimator, TransformerMixin):
                 
         return feature_names
     
-    def fit(self, X: pd.DataFrame, y: Optional[Any] = None) -> 'RollingAggregateTransformer':
+    def fit(self, X: pd.DataFrame, y: Optional[Any] = None) -> 'RollingAgregator':
         """Fit the transformer (no-op).
         
         Parameters
@@ -248,7 +248,7 @@ if __name__ == "__main__":
     })
     
     # Initialize transformer
-    transformer = RollingAggregateTransformer(
+    transformer = RollingAgregator(
         window_size=10,
         aggregation_functions=['mean', 'std', 'min', 'max'],
         columns='value'
