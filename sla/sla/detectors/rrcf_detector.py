@@ -47,7 +47,7 @@ class RRCFDetector(BaseEstimator):
         
         for tree in self.forest:
             for i in range(n):
-                point = X[i]
+                point = X.iloc[i]
                 unique_index = (i, id(tree))
                 tree.insert_point(point, index=unique_index)
                 
@@ -75,7 +75,7 @@ class RRCFDetector(BaseEstimator):
         
         for tree in self.forest:
             for i in range(len(X)):
-                point = X[i]
+                point = X.iloc[i]
                 unique_index = (i, id(tree))
                 
                 if unique_index in tree.leaves:
