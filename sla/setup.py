@@ -10,7 +10,7 @@ setup(
     description='Analisis de logs en python',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python-',
+    url='https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: Apache License 2.0',
