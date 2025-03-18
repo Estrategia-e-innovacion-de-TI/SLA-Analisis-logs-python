@@ -54,7 +54,7 @@ class AnomalyVisualizer:
         plt.ylabel(ylabel or 'Anomalías detectadas')
         plt.title(title or 'Anomalías detectadas vs incidentes')
         plt.xticks(rotation=45)
-        plt.legend(legend_labels, loc='upper right')
+        plt.legend(legend_labels, loc='upper left')
 
         if zoom and zoom_date:
             plt.xlim(pd.Timestamp(zoom_date[0]), pd.Timestamp(zoom_date[1]))
