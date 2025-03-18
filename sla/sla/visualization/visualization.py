@@ -89,7 +89,7 @@ class AnomalyVisualizer:
             marker=dict(color=colors['anomalies'], size=8)
         ))
 
-        if self.incidents_df:
+        if self.incidents_df is not None:
             for _, row in self.incidents_df.iterrows():
                 fig.add_vrect(
                     x0=row['start_time'], x1=row['end_time'],
