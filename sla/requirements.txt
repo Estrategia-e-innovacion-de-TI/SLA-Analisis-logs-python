@@ -6,3 +6,5 @@ scikit-learn==1.6.1
 numpy==2.2.3
 scipy==1.15.2
 setuptools
+pytest==8.2.2
+pytest-html==4.1.1
