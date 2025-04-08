@@ -16,12 +16,23 @@ def detect_anomalies(df, column):
     return anomalies
 
 def test_minimum_entries(df_and_columns):
-    df, _ = df_and_columns
+    df, columns = df_and_columns
+    failed_columns = []
+    min_required_entries = 25000
     
-    num_entries = len(df)
-
-    assert num_entries >= 25000, f"Number of entries {num_entries} is less than 25,000"
-
+    total_entries = len(df)
+    print(f"------Total entries in DataFrame: {total_entries}")
+    
+    for column in columns:
+        column_entries = df[column].count()
+        
+        if column_entries < min_required_entries:
+            # Only print for failing columns
+            print(f"------Column '{column}' has insufficient entries: {column_entries}")
+            failed_columns.append((column, column_entries))
+    
+    assert not failed_columns, f"Columns with fewer than {min_required_entries} entries: {', '.join([f'{col} ({entries})' for col, entries in failed_columns])}"
+    
 def test_column_names(df_and_columns):
     df, _ = df_and_columns
 
@@ -45,32 +56,35 @@ def test_anomalies(df_and_columns):
 
 def test_non_null_percentage(df_and_columns):
     df, columns = df_and_columns
-
+    failed_columns = []
     min_non_null_percentage = 95
 
     for column in columns:
         non_null_count = df[column].notnull().sum()
         total_count = len(df)
         non_null_percentage = (non_null_count / total_count) * 100
-
-        assert non_null_percentage >= min_non_null_percentage, f"Column '{column}' has less than 95% non-null values ({non_null_percentage}%)"
-
+        
+        if non_null_percentage < min_non_null_percentage:
+            print(f"------Column '{column}' has {non_null_percentage:.2f}% non-null values")
+            failed_columns.append((column, non_null_percentage))
+    
+    assert not failed_columns, f"Columns with less than {min_non_null_percentage}% non-null values: {', '.join([f'{col} ({perc:.2f}%)' for col, perc in failed_columns])}"
+    
 def test_column_variance(df_and_columns):
     df, columns = df_and_columns
     failed_columns = []
-
     min_acceptable_variance = 500
 
     for column in columns:
         column_variance = df[column].var()
 
-        print(f"------Variance for column '{column}': {column_variance:.2f}")
-
         if column_variance < min_acceptable_variance:
+            # Only print for failing columns
+            print(f"------Variance for column '{column}': {column_variance:.2f}")
             failed_columns.append((column, column_variance))
 
     assert not failed_columns, f"Columns with variance below the acceptable threshold: {', '.join([f'{col} ({var:.2f})' for col, var in failed_columns])}"
-    
+        
 def test_value_label_correlation(df_and_columns):
     df, columns = df_and_columns
     failed_columns = []
@@ -79,16 +93,18 @@ def test_value_label_correlation(df_and_columns):
     for column in columns:
         correlation_coefficient, p_value = pointbiserialr(df['label'], df[column])
         
-        print(f"------Point-biserial coefficient for column '{column}': {correlation_coefficient:.2f}")
-
         if abs(correlation_coefficient) < correlation_threshold:
+            # Only print for failing columns
+            print(f"------Point-biserial coefficient for column '{column}': {correlation_coefficient:.2f}")
             failed_columns.append((column, correlation_coefficient))
 
     assert not failed_columns, f"Columns with point-biserial correlation coefficient below the threshold: {', '.join([f'{col} ({coef:.2f})' for col, coef in failed_columns])}"
-
+    
 def test_logistic_regression_recall(df_and_columns):
     df, columns = df_and_columns
     recall_scores = []
+    failed_columns = []
+    recall_threshold = 0.5
 
     for column in columns:
         X_train, X_test, y_train, y_test = train_test_split(df[[column]], df['label'], test_size=0.2, random_state=42)
@@ -101,11 +117,10 @@ def test_logistic_regression_recall(df_and_columns):
         recall = recall_score(y_test, y_pred)
         
         recall_scores.append((column, recall))
+        
+        if recall <= recall_threshold:
+            # Only print for failing columns
+            print(f"------Recall Score for column '{column}': {recall:.2f}")
+            failed_columns.append((column, recall))
 
-    recall_scores.sort(key=lambda x: x[1], reverse=True)
-
-    for column, recall in recall_scores:
-        print(f"------Recall Score for column '{column}': {recall:.2f}")
-
-    failed_columns = [column for column, recall in recall_scores if recall <= 0.5]
-    assert not failed_columns, f"Columns with recall below 0.5: {', '.join(failed_columns)}"
+    assert not failed_columns, f"Columns with recall below {recall_threshold}: {', '.join([f'{col} ({rec:.2f})' for col, rec in failed_columns])}"
