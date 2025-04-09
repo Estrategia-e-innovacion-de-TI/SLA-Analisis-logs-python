@@ -52,5 +52,4 @@ def pytest_runtest_makereport(item, call):
         cap_stdout = call.capstdout if hasattr(call, 'capstdout') else ""
         cap_stderr = call.capstderr if hasattr(call, 'capstderr') else ""
         
-        # Replace the long traceback with just stdout (or both if you want)
         rep.longrepr = cap_stdout or cap_stderr or ""
