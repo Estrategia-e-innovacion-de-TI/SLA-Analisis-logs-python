@@ -27,7 +27,6 @@ def test_minimum_entries(df_and_columns):
         column_entries = df[column].count()
         
         if column_entries < min_required_entries:
-            # Only print for failing columns
             print(f"------Column '{column}' has insufficient entries: {column_entries}")
             failed_columns.append((column, column_entries))
     
@@ -79,7 +78,6 @@ def test_column_variance(df_and_columns):
         column_variance = df[column].var()
 
         if column_variance < min_acceptable_variance:
-            # Only print for failing columns
             print(f"------Variance for column '{column}': {column_variance:.2f}")
             failed_columns.append((column, column_variance))
 
@@ -94,7 +92,6 @@ def test_value_label_correlation(df_and_columns):
         correlation_coefficient, p_value = pointbiserialr(df['label'], df[column])
         
         if abs(correlation_coefficient) < correlation_threshold:
-            # Only print for failing columns
             print(f"------Point-biserial coefficient for column '{column}': {correlation_coefficient:.2f}")
             failed_columns.append((column, correlation_coefficient))
 
@@ -119,7 +116,6 @@ def test_logistic_regression_recall(df_and_columns):
         recall_scores.append((column, recall))
         
         if recall <= recall_threshold:
-            # Only print for failing columns
             print(f"------Recall Score for column '{column}': {recall:.2f}")
             failed_columns.append((column, recall))
 
