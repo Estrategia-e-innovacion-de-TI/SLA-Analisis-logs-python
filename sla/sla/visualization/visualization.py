@@ -54,7 +54,7 @@ class AnomalyVisualizer:
         plt.ylabel(ylabel or 'Anomalías detectadas')
         plt.title(title or 'Anomalías detectadas vs incidentes')
         plt.xticks(rotation=45)
-        plt.legend(legend_labels, loc='upper right')
+        plt.legend(legend_labels, loc='upper left')
 
         if zoom and zoom_date:
             plt.xlim(pd.Timestamp(zoom_date[0]), pd.Timestamp(zoom_date[1]))
@@ -66,19 +66,19 @@ class AnomalyVisualizer:
         Plots a dynamic graph using Plotly.
 
         Parameters:
-        - colors (dict): Custom colors for 'scores', 'anomalies', and 'incident'.
+        - colors (dict): Custom colors for 'normal', 'anomaly', and 'incident'.
         - title (str): Title of the plot.
         - xaxis_title (str): Label for the x-axis.
         - yaxis_title (str): Label for the y-axis.
         """
         if colors is None:
-            colors = {'scores': 'blue', 'anomalies': 'red', 'incident': 'orange'}
+            colors = {'normal': 'blue', 'anomaly': 'red', 'incident': 'orange'}
 
         fig = go.Figure()
 
         fig.add_trace(go.Scatter(
             x=self.anomaly_df.index, y=self.anomaly_df[self.score_col], mode='lines+markers',
-            name='Anomaly Scores', line=dict(color=colors['scores']),
+            name='Anomaly Scores', line=dict(color=colors['normal']),
             marker=dict(size=5, opacity=0.4)
         ))
 
@@ -86,14 +86,14 @@ class AnomalyVisualizer:
             x=self.anomaly_df[self.anomaly_df[self.anomaly_col] == -1].index, 
             y=self.anomaly_df.loc[self.anomaly_df[self.anomaly_col] == -1, self.score_col],
             mode='markers', name='Anomalies',
-            marker=dict(color=colors['anomalies'], size=8)
+            marker=dict(color=colors['anomaly'], size=8)
         ))
 
-        if self.incidents_df:
+        if self.incidents_df is not None:
             for _, row in self.incidents_df.iterrows():
                 fig.add_vrect(
                     x0=row['start_time'], x1=row['end_time'],
-                    fillcolor='orange', opacity=0.1,
+                    fillcolor=colors['incident'], opacity=0.1,
                     annotation_text=row['Servicio'],
                 )
 
