@@ -1,21 +1,56 @@
+"""
+Pytest configuration module for analyzer.
+
+This module defines fixtures and hooks used for testing data analysis
+with labeled events. It handles loading CSV data, applying event labels,
+and improving test failure reporting.
+"""
+
+import datetime
 import pytest
 import pandas as pd
-import datetime
+
 
 def pytest_addoption(parser):
+    """
+    Add command line options to pytest.
+    
+    Parameters
+    ----------
+    parser : _pytest.config.argparsing.Parser
+        Pytest command line parser to which the options are added.
+    """
     parser.addoption("--csvpath", action="store", help="Path to the CSV file")
     parser.addoption("--columns", action="store", help="Column names for testing")
-    parser.addoption("--events_csvpath", action="store", help="Path to the events CSV file with begin and end dates")
+    parser.addoption("--events_csvpath", action="store", 
+                     help="Path to the events CSV file with begin and end dates")
     parser.addoption("--timestamp_column", action="store", default="timestamp", 
-                    help="Name of the timestamp column in the main CSV")
+                     help="Name of the timestamp column in the main CSV")
     parser.addoption("--event_begin_column", action="store", default="begin_date", 
-                    help="Name of the event begin date column in the events CSV")
+                     help="Name of the event begin date column in the events CSV")
     parser.addoption("--event_end_column", action="store", default="end_date", 
-                    help="Name of the event end date column in the events CSV")
+                     help="Name of the event end date column in the events CSV")
 
 
 @pytest.fixture(scope="module")
 def df_and_columns(request):
+    """
+    Fixture to load and prepare dataframes with event labels.
+    
+    Reads a CSV file of time-series data and optionally applies event labels
+    based on a second CSV containing event time periods.
+    
+    Parameters
+    ----------
+    request : pytest.FixtureRequest
+        The pytest request object for accessing command line options.
+        
+    Returns
+    -------
+    tuple
+        A tuple containing (dataframe, columns_list) with the loaded and
+        labeled dataframe and list of column names for testing.
+    """
     csv_path = request.config.getoption("--csvpath")
     columns = request.config.getoption("--columns").split(',')
     events_csv_path = request.config.getoption("--events_csvpath")
@@ -43,8 +78,27 @@ def df_and_columns(request):
                 
     return df, columns
 
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+    """
+    Pytest hook for enhancing test failure reports.
+    
+    Captures stdout and stderr output during test execution and includes
+    it in the test report when a test fails.
+    
+    Parameters
+    ----------
+    item : pytest.Item
+        Test item being executed.
+    call : pytest.CallInfo
+        Information about the test execution.
+    
+    Yields
+    ------
+    _pytest.runner.CallInfo
+        The call info outcome for further processing by pytest.
+    """
     outcome = yield
     rep = outcome.get_result()
 
