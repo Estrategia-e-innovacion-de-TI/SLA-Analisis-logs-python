@@ -4,6 +4,9 @@ Pytest configuration module for analyzer.
 This module defines fixtures and hooks used for testing data analysis
 with labeled events. It handles loading CSV data, applying event labels,
 and improving test failure reporting.
+
+Example usage:
+    pytest run_tests.py --csvpath=<data_file.csv> --columns=<column1,column2> --events_csvpath=<events_file.csv> --html=report.html
 """
 
 import datetime
