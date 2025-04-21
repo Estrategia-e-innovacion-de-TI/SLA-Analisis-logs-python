@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 15.0.1"/>
+    <meta name="generator" content="pdoc 15.0.3"/>
     <title>sla.simulation API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
     <style>/*! syntax-highlighting.css */pre{line-height:125%;}span.linenos{color:inherit; background-color:transparent; padding-left:5px; padding-right:20px;}.pdoc-code .hll{background-color:#ffffcc}.pdoc-code{background:#f8f8f8;}.pdoc-code .c{color:#3D7B7B; font-style:italic}.pdoc-code .err{border:1px solid #FF0000}.pdoc-code .k{color:#008000; font-weight:bold}.pdoc-code .o{color:#666666}.pdoc-code .ch{color:#3D7B7B; font-style:italic}.pdoc-code .cm{color:#3D7B7B; font-style:italic}.pdoc-code .cp{color:#9C6500}.pdoc-code .cpf{color:#3D7B7B; font-style:italic}.pdoc-code .c1{color:#3D7B7B; font-style:italic}.pdoc-code .cs{color:#3D7B7B; font-style:italic}.pdoc-code .gd{color:#A00000}.pdoc-code .ge{font-style:italic}.pdoc-code .gr{color:#E40000}.pdoc-code .gh{color:#000080; font-weight:bold}.pdoc-code .gi{color:#008400}.pdoc-code .go{color:#717171}.pdoc-code .gp{color:#000080; font-weight:bold}.pdoc-code .gs{font-weight:bold}.pdoc-code .gu{color:#800080; font-weight:bold}.pdoc-code .gt{color:#0044DD}.pdoc-code .kc{color:#008000; font-weight:bold}.pdoc-code .kd{color:#008000; font-weight:bold}.pdoc-code .kn{color:#008000; font-weight:bold}.pdoc-code .kp{color:#008000}.pdoc-code .kr{color:#008000; font-weight:bold}.pdoc-code .kt{color:#B00040}.pdoc-code .m{color:#666666}.pdoc-code .s{color:#BA2121}.pdoc-code .na{color:#687822}.pdoc-code .nb{color:#008000}.pdoc-code .nc{color:#0000FF; font-weight:bold}.pdoc-code .no{color:#880000}.pdoc-code .nd{color:#AA22FF}.pdoc-code .ni{color:#717171; font-weight:bold}.pdoc-code .ne{color:#CB3F38; font-weight:bold}.pdoc-code .nf{color:#0000FF}.pdoc-code .nl{color:#767600}.pdoc-code .nn{color:#0000FF; font-weight:bold}.pdoc-code .nt{color:#008000; font-weight:bold}.pdoc-code .nv{color:#19177C}.pdoc-code .ow{color:#AA22FF; font-weight:bold}.pdoc-code .w{color:#bbbbbb}.pdoc-code .mb{color:#666666}.pdoc-code .mf{color:#666666}.pdoc-code .mh{color:#666666}.pdoc-code .mi{color:#666666}.pdoc-code .mo{color:#666666}.pdoc-code .sa{color:#BA2121}.pdoc-code .sb{color:#BA2121}.pdoc-code .sc{color:#BA2121}.pdoc-code .dl{color:#BA2121}.pdoc-code .sd{color:#BA2121; font-style:italic}.pdoc-code .s2{color:#BA2121}.pdoc-code .se{color:#AA5D1F; font-weight:bold}.pdoc-code .sh{color:#BA2121}.pdoc-code .si{color:#A45A77; font-weight:bold}.pdoc-code .sx{color:#008000}.pdoc-code .sr{color:#A45A77}.pdoc-code .s1{color:#BA2121}.pdoc-code .ss{color:#19177C}.pdoc-code .bp{color:#008000}.pdoc-code .fm{color:#0000FF}.pdoc-code .vc{color:#19177C}.pdoc-code .vg{color:#19177C}.pdoc-code .vi{color:#19177C}.pdoc-code .vm{color:#19177C}.pdoc-code .il{color:#666666}</style>
     <style>/*! theme.css */:root{--pdoc-background:#fff;}.pdoc{--text:#212529;--muted:#6c757d;--link:#3660a5;--link-hover:#1659c5;--code:#f8f8f8;--active:#fff598;--accent:#eee;--accent2:#c1c1c1;--nav-hover:rgba(255, 255, 255, 0.5);--name:#0066BB;--def:#008800;--annotation:#007020;}</style>
     <style>/*! layout.css */html, body{width:100%;height:100%;}html, main{scroll-behavior:smooth;}body{background-color:var(--pdoc-background);}@media (max-width:769px){#navtoggle{cursor:pointer;position:absolute;width:50px;height:40px;top:1rem;right:1rem;border-color:var(--text);color:var(--text);display:flex;opacity:0.8;z-index:999;}#navtoggle:hover{opacity:1;}#togglestate + div{display:none;}#togglestate:checked + div{display:inherit;}main, header{padding:2rem 3vw;}header + main{margin-top:-3rem;}.git-button{display:none !important;}nav input[type="search"]{max-width:77%;}nav input[type="search"]:first-child{margin-top:-6px;}nav input[type="search"]:valid ~ *{display:none !important;}}@media (min-width:770px){:root{--sidebar-width:clamp(12.5rem, 28vw, 22rem);}nav{position:fixed;overflow:auto;height:100vh;width:var(--sidebar-width);}main, header{padding:3rem 2rem 3rem calc(var(--sidebar-width) + 3rem);width:calc(54rem + var(--sidebar-width));max-width:100%;}header + main{margin-top:-4rem;}#navtoggle{display:none;}}#togglestate{position:absolute;height:0;opacity:0;}nav.pdoc{--pad:clamp(0.5rem, 2vw, 1.75rem);--indent:1.5rem;background-color:var(--accent);border-right:1px solid var(--accent2);box-shadow:0 0 20px rgba(50, 50, 50, .2) inset;padding:0 0 0 var(--pad);overflow-wrap:anywhere;scrollbar-width:thin; scrollbar-color:var(--accent2) transparent; z-index:1}nav.pdoc::-webkit-scrollbar{width:.4rem; }nav.pdoc::-webkit-scrollbar-thumb{background-color:var(--accent2); }nav.pdoc > div{padding:var(--pad) 0;}nav.pdoc .module-list-button{display:inline-flex;align-items:center;color:var(--text);border-color:var(--muted);margin-bottom:1rem;}nav.pdoc .module-list-button:hover{border-color:var(--text);}nav.pdoc input[type=search]{display:block;outline-offset:0;width:calc(100% - var(--pad));}nav.pdoc .logo{max-width:calc(100% - var(--pad));max-height:35vh;display:block;margin:0 auto 1rem;transform:translate(calc(-.5 * var(--pad)), 0);}nav.pdoc ul{list-style:none;padding-left:0;}nav.pdoc > div > ul{margin-left:calc(0px - var(--pad));}nav.pdoc li a{padding:.2rem 0 .2rem calc(var(--pad) + var(--indent));}nav.pdoc > div > ul > li > a{padding-left:var(--pad);}nav.pdoc li{transition:all 100ms;}nav.pdoc li:hover{background-color:var(--nav-hover);}nav.pdoc a, nav.pdoc a:hover{color:var(--text);}nav.pdoc a{display:block;}nav.pdoc > h2:first-of-type{margin-top:1.5rem;}nav.pdoc .class:before{content:"class ";color:var(--muted);}nav.pdoc .function:after{content:"()";color:var(--muted);}nav.pdoc footer:before{content:"";display:block;width:calc(100% - var(--pad));border-top:solid var(--accent2) 1px;margin-top:1.5rem;padding-top:.5rem;}nav.pdoc footer{font-size:small;}</style>
-    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note {color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
+    <style>/*! content.css */.pdoc{color:var(--text);box-sizing:border-box;line-height:1.5;background:none;}.pdoc .pdoc-button{cursor:pointer;display:inline-block;border:solid black 1px;border-radius:2px;font-size:.75rem;padding:calc(0.5em - 1px) 1em;transition:100ms all;}.pdoc .alert{padding:1rem 1rem 1rem calc(1.5rem + 24px);border:1px solid transparent;border-radius:.25rem;background-repeat:no-repeat;background-position:.75rem center;margin-bottom:1rem;}.pdoc .alert > em{display:none;}.pdoc .alert > *:last-child{margin-bottom:0;}.pdoc .alert.note{color:#084298;background-color:#cfe2ff;border-color:#b6d4fe;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23084298%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8%2016A8%208%200%201%200%208%200a8%208%200%200%200%200%2016zm.93-9.412-1%204.705c-.07.34.029.533.304.533.194%200%20.487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703%200-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381%202.29-.287zM8%205.5a1%201%200%201%201%200-2%201%201%200%200%201%200%202z%22/%3E%3C/svg%3E");}.pdoc .alert.tip{color:#0a3622;background-color:#d1e7dd;border-color:#a3cfbb;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%230a3622%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%206a6%206%200%201%201%2010.174%204.31c-.203.196-.359.4-.453.619l-.762%201.769A.5.5%200%200%201%2010.5%2013a.5.5%200%200%201%200%201%20.5.5%200%200%201%200%201l-.224.447a1%201%200%200%201-.894.553H6.618a1%201%200%200%201-.894-.553L5.5%2015a.5.5%200%200%201%200-1%20.5.5%200%200%201%200-1%20.5.5%200%200%201-.46-.302l-.761-1.77a2%202%200%200%200-.453-.618A5.98%205.98%200%200%201%202%206m6-5a5%205%200%200%200-3.479%208.592c.263.254.514.564.676.941L5.83%2012h4.342l.632-1.467c.162-.377.413-.687.676-.941A5%205%200%200%200%208%201%22/%3E%3C/svg%3E");}.pdoc .alert.important{color:#055160;background-color:#cff4fc;border-color:#9eeaf9;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23055160%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2%200a2%202%200%200%200-2%202v12a2%202%200%200%200%202%202h12a2%202%200%200%200%202-2V2a2%202%200%200%200-2-2zm6%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23664d03%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M8.982%201.566a1.13%201.13%200%200%200-1.96%200L.165%2013.233c-.457.778.091%201.767.98%201.767h13.713c.889%200%201.438-.99.98-1.767L8.982%201.566zM8%205c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%205.995A.905.905%200%200%201%208%205zm.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2z%22/%3E%3C/svg%3E");}.pdoc .alert.caution{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M11.46.146A.5.5%200%200%200%2011.107%200H4.893a.5.5%200%200%200-.353.146L.146%204.54A.5.5%200%200%200%200%204.893v6.214a.5.5%200%200%200%20.146.353l4.394%204.394a.5.5%200%200%200%20.353.146h6.214a.5.5%200%200%200%20.353-.146l4.394-4.394a.5.5%200%200%200%20.146-.353V4.893a.5.5%200%200%200-.146-.353zM8%204c.535%200%20.954.462.9.995l-.35%203.507a.552.552%200%200%201-1.1%200L7.1%204.995A.905.905%200%200%201%208%204m.002%206a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E");}.pdoc .alert.danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23842029%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5.52.359A.5.5%200%200%201%206%200h4a.5.5%200%200%201%20.474.658L8.694%206H12.5a.5.5%200%200%201%20.395.807l-7%209a.5.5%200%200%201-.873-.454L6.823%209.5H3.5a.5.5%200%200%201-.48-.641l2.5-8.5z%22/%3E%3C/svg%3E");}.pdoc .visually-hidden{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0, 0, 0, 0) !important;white-space:nowrap !important;border:0 !important;}.pdoc h1, .pdoc h2, .pdoc h3{font-weight:300;margin:.3em 0;padding:.2em 0;}.pdoc > section:not(.module-info) h1{font-size:1.5rem;font-weight:500;}.pdoc > section:not(.module-info) h2{font-size:1.4rem;font-weight:500;}.pdoc > section:not(.module-info) h3{font-size:1.3rem;font-weight:500;}.pdoc > section:not(.module-info) h4{font-size:1.2rem;}.pdoc > section:not(.module-info) h5{font-size:1.1rem;}.pdoc a{text-decoration:none;color:var(--link);}.pdoc a:hover{color:var(--link-hover);}.pdoc blockquote{margin-left:2rem;}.pdoc pre{border-top:1px solid var(--accent2);border-bottom:1px solid var(--accent2);margin-top:0;margin-bottom:1em;padding:.5rem 0 .5rem .5rem;overflow-x:auto;background-color:var(--code);}.pdoc code{color:var(--text);padding:.2em .4em;margin:0;font-size:85%;background-color:var(--accent);border-radius:6px;}.pdoc a > code{color:inherit;}.pdoc pre > code{display:inline-block;font-size:inherit;background:none;border:none;padding:0;}.pdoc > section:not(.module-info){margin-bottom:1.5rem;}.pdoc .modulename{margin-top:0;font-weight:bold;}.pdoc .modulename a{color:var(--link);transition:100ms all;}.pdoc .git-button{float:right;border:solid var(--link) 1px;}.pdoc .git-button:hover{background-color:var(--link);color:var(--pdoc-background);}.view-source-toggle-state,.view-source-toggle-state ~ .pdoc-code{display:none;}.view-source-toggle-state:checked ~ .pdoc-code{display:block;}.view-source-button{display:inline-block;float:right;font-size:.75rem;line-height:1.5rem;color:var(--muted);padding:0 .4rem 0 1.3rem;cursor:pointer;text-indent:-2px;}.view-source-button > span{visibility:hidden;}.module-info .view-source-button{float:none;display:flex;justify-content:flex-end;margin:-1.2rem .4rem -.2rem 0;}.view-source-button::before{position:absolute;content:"View Source";display:list-item;list-style-type:disclosure-closed;}.view-source-toggle-state:checked ~ .attr .view-source-button::before,.view-source-toggle-state:checked ~ .view-source-button::before{list-style-type:disclosure-open;}.pdoc .docstring{margin-bottom:1.5rem;}.pdoc section:not(.module-info) .docstring{margin-left:clamp(0rem, 5vw - 2rem, 1rem);}.pdoc .docstring .pdoc-code{margin-left:1em;margin-right:1em;}.pdoc h1:target,.pdoc h2:target,.pdoc h3:target,.pdoc h4:target,.pdoc h5:target,.pdoc h6:target,.pdoc .pdoc-code > pre > span:target{background-color:var(--active);box-shadow:-1rem 0 0 0 var(--active);}.pdoc .pdoc-code > pre > span:target{display:block;}.pdoc div:target > .attr,.pdoc section:target > .attr,.pdoc dd:target > a{background-color:var(--active);}.pdoc *{scroll-margin:2rem;}.pdoc .pdoc-code .linenos{user-select:none;}.pdoc .attr:hover{filter:contrast(0.95);}.pdoc section, .pdoc .classattr{position:relative;}.pdoc .headerlink{--width:clamp(1rem, 3vw, 2rem);position:absolute;top:0;left:calc(0rem - var(--width));transition:all 100ms ease-in-out;opacity:0;}.pdoc .headerlink::before{content:"#";display:block;text-align:center;width:var(--width);height:2.3rem;line-height:2.3rem;font-size:1.5rem;}.pdoc .attr:hover ~ .headerlink,.pdoc *:target > .headerlink,.pdoc .headerlink:hover{opacity:1;}.pdoc .attr{display:block;margin:.5rem 0 .5rem;padding:.4rem .4rem .4rem 1rem;background-color:var(--accent);overflow-x:auto;}.pdoc .classattr{margin-left:2rem;}.pdoc .decorator-deprecated{color:#842029;}.pdoc .decorator-deprecated ~ span{filter:grayscale(1) opacity(0.8);}.pdoc .name{color:var(--name);font-weight:bold;}.pdoc .def{color:var(--def);font-weight:bold;}.pdoc .signature{background-color:transparent;}.pdoc .param, .pdoc .return-annotation{white-space:pre;}.pdoc .signature.multiline .param{display:block;}.pdoc .signature.condensed .param{display:inline-block;}.pdoc .annotation{color:var(--annotation);}.pdoc .view-value-toggle-state,.pdoc .view-value-toggle-state ~ .default_value{display:none;}.pdoc .view-value-toggle-state:checked ~ .default_value{display:inherit;}.pdoc .view-value-button{font-size:.5rem;vertical-align:middle;border-style:dashed;margin-top:-0.1rem;}.pdoc .view-value-button:hover{background:white;}.pdoc .view-value-button::before{content:"show";text-align:center;width:2.2em;display:inline-block;}.pdoc .view-value-toggle-state:checked ~ .view-value-button::before{content:"hide";}.pdoc .inherited{margin-left:2rem;}.pdoc .inherited dt{font-weight:700;}.pdoc .inherited dt, .pdoc .inherited dd{display:inline;margin-left:0;margin-bottom:.5rem;}.pdoc .inherited dd:not(:last-child):after{content:", ";}.pdoc .inherited .class:before{content:"class ";}.pdoc .inherited .function a:after{content:"()";}.pdoc .search-result .docstring{overflow:auto;max-height:25vh;}.pdoc .search-result.focused > .attr{background-color:var(--active);}.pdoc .attribution{margin-top:2rem;display:block;opacity:0.5;transition:all 200ms;filter:grayscale(100%);}.pdoc .attribution:hover{opacity:1;filter:grayscale(0%);}.pdoc .attribution img{margin-left:5px;height:35px;vertical-align:middle;width:70px;transition:all 200ms;}.pdoc table{display:block;width:max-content;max-width:100%;overflow:auto;margin-bottom:1rem;}.pdoc table th{font-weight:600;}.pdoc table th, .pdoc table td{padding:6px 13px;border:1px solid var(--accent2);}</style>
     <style>/*! custom.css */</style></head>
 <body>
     <nav class="pdoc">
@@ -27,10 +27,73 @@
                    pattern=".+" required>
 
 
-            <h2>Submodules</h2>
-            <ul>
-                    <li><a href="simulation/streaming_anomaly_detection.html">streaming_anomaly_detection</a></li>
-            </ul>
+
+            <h2>API Documentation</h2>
+                <ul class="memberlist">
+            <li>
+                    <a class="class" href="#StreamingSimulation">StreamingSimulation</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#StreamingSimulation.__init__">StreamingSimulation</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.window_size">window_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.threshold">threshold</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.dynamic_threshold">dynamic_threshold</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.percentile">percentile</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.manager">manager</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.detector">detector</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.historical_data">historical_data</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.historical_scores">historical_scores</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.data_source">data_source</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.chunk_size">chunk_size</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.stream_interval">stream_interval</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.queue">queue</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.plot_queue">plot_queue</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.streaming_active">streaming_active</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#StreamingSimulation.events">events</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#StreamingSimulation.preprocess">preprocess</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#StreamingSimulation.process_stream">process_stream</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#StreamingSimulation.run">run</a>
+                        </li>
+                </ul>
+
+            </li>
+    </ul>
 
 
 
@@ -47,10 +110,790 @@
 <a href="./../sla.html">sla</a><wbr>.simulation    </h1>
 
                 
-                
-                
-                
+                        <input id="mod-simulation-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+
+                        <label class="view-source-button" for="mod-simulation-view-source"><span>View Source</span></label>
+
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.streaming_anomaly_detection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamingSimulation</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">This module initializes the simulation package for SLA analysis logs.</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">It provides access to the `StreamingSimulation` class, which is used for </span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">streaming anomaly detection simulations.</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">Classes:</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">    StreamingSimulation: A class for simulating streaming anomaly detection.</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="sd">Attributes:</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">    __all__ (list): Specifies the public objects of the module.</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;StreamingSimulation&#39;</span><span class="p">]</span>
+</span></pre></div>
+
+
             </section>
+                <section id="StreamingSimulation">
+                            <input id="StreamingSimulation-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">StreamingSimulation</span>:
+
+                <label class="view-source-button" for="StreamingSimulation-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#StreamingSimulation"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamingSimulation-127"><a href="#StreamingSimulation-127"><span class="linenos">127</span></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamingSimulation</span><span class="p">:</span>
+</span><span id="StreamingSimulation-128"><a href="#StreamingSimulation-128"><span class="linenos">128</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-129"><a href="#StreamingSimulation-129"><span class="linenos">129</span></a><span class="sd">    Module: streaming_anomaly_detection</span>
+</span><span id="StreamingSimulation-130"><a href="#StreamingSimulation-130"><span class="linenos">130</span></a>
+</span><span id="StreamingSimulation-131"><a href="#StreamingSimulation-131"><span class="linenos">131</span></a><span class="sd">    This module contains the `StreamingSimulation` class, which simulates real-time data streaming, processes the data for anomaly detection, and visualizes the results. It integrates a streaming data manager, an anomaly detector, and event-based visualization.</span>
+</span><span id="StreamingSimulation-132"><a href="#StreamingSimulation-132"><span class="linenos">132</span></a>
+</span><span id="StreamingSimulation-133"><a href="#StreamingSimulation-133"><span class="linenos">133</span></a><span class="sd">    Classes:</span>
+</span><span id="StreamingSimulation-134"><a href="#StreamingSimulation-134"><span class="linenos">134</span></a><span class="sd">        - StreamingSimulation: Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</span>
+</span><span id="StreamingSimulation-135"><a href="#StreamingSimulation-135"><span class="linenos">135</span></a>
+</span><span id="StreamingSimulation-136"><a href="#StreamingSimulation-136"><span class="linenos">136</span></a><span class="sd">    Class StreamingSimulation:</span>
+</span><span id="StreamingSimulation-137"><a href="#StreamingSimulation-137"><span class="linenos">137</span></a><span class="sd">        Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</span>
+</span><span id="StreamingSimulation-138"><a href="#StreamingSimulation-138"><span class="linenos">138</span></a>
+</span><span id="StreamingSimulation-139"><a href="#StreamingSimulation-139"><span class="linenos">139</span></a><span class="sd">        Attributes:</span>
+</span><span id="StreamingSimulation-140"><a href="#StreamingSimulation-140"><span class="linenos">140</span></a><span class="sd">            window_size (int): The size of the sliding window for anomaly detection.</span>
+</span><span id="StreamingSimulation-141"><a href="#StreamingSimulation-141"><span class="linenos">141</span></a><span class="sd">            threshold (float): The static threshold for anomaly detection.</span>
+</span><span id="StreamingSimulation-142"><a href="#StreamingSimulation-142"><span class="linenos">142</span></a><span class="sd">            dynamic_threshold (bool): Whether to use a dynamic threshold based on historical scores.</span>
+</span><span id="StreamingSimulation-143"><a href="#StreamingSimulation-143"><span class="linenos">143</span></a><span class="sd">            percentile (int): The percentile used for calculating the dynamic threshold.</span>
+</span><span id="StreamingSimulation-144"><a href="#StreamingSimulation-144"><span class="linenos">144</span></a><span class="sd">            manager (StreamingDataManager): Manages the streaming of data chunks.</span>
+</span><span id="StreamingSimulation-145"><a href="#StreamingSimulation-145"><span class="linenos">145</span></a><span class="sd">            detector (AnomalyDetector): Detects anomalies in the data.</span>
+</span><span id="StreamingSimulation-146"><a href="#StreamingSimulation-146"><span class="linenos">146</span></a><span class="sd">            historical_data (pd.DataFrame): Stores historical data for processing.</span>
+</span><span id="StreamingSimulation-147"><a href="#StreamingSimulation-147"><span class="linenos">147</span></a><span class="sd">            historical_scores (list): Stores historical anomaly scores.</span>
+</span><span id="StreamingSimulation-148"><a href="#StreamingSimulation-148"><span class="linenos">148</span></a><span class="sd">            data_source (pd.DataFrame): The source data for streaming.</span>
+</span><span id="StreamingSimulation-149"><a href="#StreamingSimulation-149"><span class="linenos">149</span></a><span class="sd">            chunk_size (int): The size of each data chunk for streaming.</span>
+</span><span id="StreamingSimulation-150"><a href="#StreamingSimulation-150"><span class="linenos">150</span></a><span class="sd">            stream_interval (int): The interval (in seconds) between streaming chunks.</span>
+</span><span id="StreamingSimulation-151"><a href="#StreamingSimulation-151"><span class="linenos">151</span></a><span class="sd">            queue (queue.Queue): Queue for storing data chunks to be processed.</span>
+</span><span id="StreamingSimulation-152"><a href="#StreamingSimulation-152"><span class="linenos">152</span></a><span class="sd">            plot_queue (queue.Queue): Queue for storing data to be plotted.</span>
+</span><span id="StreamingSimulation-153"><a href="#StreamingSimulation-153"><span class="linenos">153</span></a><span class="sd">            streaming_active (bool): Indicates whether the streaming simulation is active.</span>
+</span><span id="StreamingSimulation-154"><a href="#StreamingSimulation-154"><span class="linenos">154</span></a><span class="sd">            events (pd.DataFrame): DataFrame containing event start and end times, colors, and labels.</span>
+</span><span id="StreamingSimulation-155"><a href="#StreamingSimulation-155"><span class="linenos">155</span></a>
+</span><span id="StreamingSimulation-156"><a href="#StreamingSimulation-156"><span class="linenos">156</span></a><span class="sd">        Methods:</span>
+</span><span id="StreamingSimulation-157"><a href="#StreamingSimulation-157"><span class="linenos">157</span></a><span class="sd">            __init__(data: pd.DataFrame, chunk_size=100, stream_interval=1, window_size=120, threshold=0.15, dynamic_threshold=False, percentile=95, events=None):</span>
+</span><span id="StreamingSimulation-158"><a href="#StreamingSimulation-158"><span class="linenos">158</span></a><span class="sd">                Initializes the StreamingSimulation instance with the given parameters.</span>
+</span><span id="StreamingSimulation-159"><a href="#StreamingSimulation-159"><span class="linenos">159</span></a>
+</span><span id="StreamingSimulation-160"><a href="#StreamingSimulation-160"><span class="linenos">160</span></a><span class="sd">            preprocess(chunk: pd.DataFrame) -&gt; np.ndarray:</span>
+</span><span id="StreamingSimulation-161"><a href="#StreamingSimulation-161"><span class="linenos">161</span></a><span class="sd">                Preprocesses a data chunk by selecting numeric columns and filling missing values.</span>
+</span><span id="StreamingSimulation-162"><a href="#StreamingSimulation-162"><span class="linenos">162</span></a>
+</span><span id="StreamingSimulation-163"><a href="#StreamingSimulation-163"><span class="linenos">163</span></a><span class="sd">            _calculate_dynamic_threshold() -&gt; float:</span>
+</span><span id="StreamingSimulation-164"><a href="#StreamingSimulation-164"><span class="linenos">164</span></a><span class="sd">                Calculates the dynamic threshold based on the specified percentile of historical scores.</span>
+</span><span id="StreamingSimulation-165"><a href="#StreamingSimulation-165"><span class="linenos">165</span></a>
+</span><span id="StreamingSimulation-166"><a href="#StreamingSimulation-166"><span class="linenos">166</span></a><span class="sd">            _stream_data():</span>
+</span><span id="StreamingSimulation-167"><a href="#StreamingSimulation-167"><span class="linenos">167</span></a><span class="sd">                Simulates real-time data streaming by adding data chunks to the queue.</span>
+</span><span id="StreamingSimulation-168"><a href="#StreamingSimulation-168"><span class="linenos">168</span></a>
+</span><span id="StreamingSimulation-169"><a href="#StreamingSimulation-169"><span class="linenos">169</span></a><span class="sd">            _plot_from_main_thread():</span>
+</span><span id="StreamingSimulation-170"><a href="#StreamingSimulation-170"><span class="linenos">170</span></a><span class="sd">                Continuously plots data and anomaly scores from the main thread, including event visualization.</span>
+</span><span id="StreamingSimulation-171"><a href="#StreamingSimulation-171"><span class="linenos">171</span></a>
+</span><span id="StreamingSimulation-172"><a href="#StreamingSimulation-172"><span class="linenos">172</span></a><span class="sd">            process_stream():</span>
+</span><span id="StreamingSimulation-173"><a href="#StreamingSimulation-173"><span class="linenos">173</span></a><span class="sd">                Consumes data from the queue, processes it with the anomaly detector, and updates historical data and scores.</span>
+</span><span id="StreamingSimulation-174"><a href="#StreamingSimulation-174"><span class="linenos">174</span></a>
+</span><span id="StreamingSimulation-175"><a href="#StreamingSimulation-175"><span class="linenos">175</span></a><span class="sd">            run():</span>
+</span><span id="StreamingSimulation-176"><a href="#StreamingSimulation-176"><span class="linenos">176</span></a><span class="sd">                Starts the streaming, processing, and plotting threads. Handles graceful shutdown on interruption.</span>
+</span><span id="StreamingSimulation-177"><a href="#StreamingSimulation-177"><span class="linenos">177</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-178"><a href="#StreamingSimulation-178"><span class="linenos">178</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">dynamic_threshold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="StreamingSimulation-179"><a href="#StreamingSimulation-179"><span class="linenos">179</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
+</span><span id="StreamingSimulation-180"><a href="#StreamingSimulation-180"><span class="linenos">180</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+</span><span id="StreamingSimulation-181"><a href="#StreamingSimulation-181"><span class="linenos">181</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_threshold</span> <span class="o">=</span> <span class="n">dynamic_threshold</span>
+</span><span id="StreamingSimulation-182"><a href="#StreamingSimulation-182"><span class="linenos">182</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">percentile</span> <span class="o">=</span> <span class="n">percentile</span>
+</span><span id="StreamingSimulation-183"><a href="#StreamingSimulation-183"><span class="linenos">183</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">manager</span> <span class="o">=</span> <span class="n">StreamingDataManager</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="n">stream_interval</span><span class="p">)</span>
+</span><span id="StreamingSimulation-184"><a href="#StreamingSimulation-184"><span class="linenos">184</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">detector</span> <span class="o">=</span> <span class="n">AnomalyDetector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
+</span><span id="StreamingSimulation-185"><a href="#StreamingSimulation-185"><span class="linenos">185</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span><span id="StreamingSimulation-186"><a href="#StreamingSimulation-186"><span class="linenos">186</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="StreamingSimulation-187"><a href="#StreamingSimulation-187"><span class="linenos">187</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="StreamingSimulation-188"><a href="#StreamingSimulation-188"><span class="linenos">188</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">chunk_size</span>
+</span><span id="StreamingSimulation-189"><a href="#StreamingSimulation-189"><span class="linenos">189</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_interval</span> <span class="o">=</span> <span class="n">stream_interval</span>
+</span><span id="StreamingSimulation-190"><a href="#StreamingSimulation-190"><span class="linenos">190</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+</span><span id="StreamingSimulation-191"><a href="#StreamingSimulation-191"><span class="linenos">191</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+</span><span id="StreamingSimulation-192"><a href="#StreamingSimulation-192"><span class="linenos">192</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="StreamingSimulation-193"><a href="#StreamingSimulation-193"><span class="linenos">193</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">events</span>  <span class="c1"># DataFrame with event start and end times</span>
+</span><span id="StreamingSimulation-194"><a href="#StreamingSimulation-194"><span class="linenos">194</span></a>
+</span><span id="StreamingSimulation-195"><a href="#StreamingSimulation-195"><span class="linenos">195</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="StreamingSimulation-196"><a href="#StreamingSimulation-196"><span class="linenos">196</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-197"><a href="#StreamingSimulation-197"><span class="linenos">197</span></a><span class="sd">        Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.</span>
+</span><span id="StreamingSimulation-198"><a href="#StreamingSimulation-198"><span class="linenos">198</span></a>
+</span><span id="StreamingSimulation-199"><a href="#StreamingSimulation-199"><span class="linenos">199</span></a><span class="sd">        Args:</span>
+</span><span id="StreamingSimulation-200"><a href="#StreamingSimulation-200"><span class="linenos">200</span></a><span class="sd">            chunk (pd.DataFrame): The input DataFrame containing the data to preprocess.</span>
+</span><span id="StreamingSimulation-201"><a href="#StreamingSimulation-201"><span class="linenos">201</span></a>
+</span><span id="StreamingSimulation-202"><a href="#StreamingSimulation-202"><span class="linenos">202</span></a><span class="sd">        Returns:</span>
+</span><span id="StreamingSimulation-203"><a href="#StreamingSimulation-203"><span class="linenos">203</span></a><span class="sd">            np.ndarray: A NumPy array containing the preprocessed numeric data.</span>
+</span><span id="StreamingSimulation-204"><a href="#StreamingSimulation-204"><span class="linenos">204</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-205"><a href="#StreamingSimulation-205"><span class="linenos">205</span></a>        <span class="n">numeric_data</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="StreamingSimulation-206"><a href="#StreamingSimulation-206"><span class="linenos">206</span></a>        <span class="k">return</span> <span class="n">numeric_data</span><span class="o">.</span><span class="n">values</span>
+</span><span id="StreamingSimulation-207"><a href="#StreamingSimulation-207"><span class="linenos">207</span></a>
+</span><span id="StreamingSimulation-208"><a href="#StreamingSimulation-208"><span class="linenos">208</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_calculate_dynamic_threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation-209"><a href="#StreamingSimulation-209"><span class="linenos">209</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-210"><a href="#StreamingSimulation-210"><span class="linenos">210</span></a><span class="sd">        Calculate the dynamic threshold based on historical anomaly scores.</span>
+</span><span id="StreamingSimulation-211"><a href="#StreamingSimulation-211"><span class="linenos">211</span></a>
+</span><span id="StreamingSimulation-212"><a href="#StreamingSimulation-212"><span class="linenos">212</span></a><span class="sd">        This method computes a dynamic threshold using the specified percentile</span>
+</span><span id="StreamingSimulation-213"><a href="#StreamingSimulation-213"><span class="linenos">213</span></a><span class="sd">        of the historical anomaly scores. If no historical scores are available,</span>
+</span><span id="StreamingSimulation-214"><a href="#StreamingSimulation-214"><span class="linenos">214</span></a><span class="sd">        it falls back to a predefined static threshold.</span>
+</span><span id="StreamingSimulation-215"><a href="#StreamingSimulation-215"><span class="linenos">215</span></a>
+</span><span id="StreamingSimulation-216"><a href="#StreamingSimulation-216"><span class="linenos">216</span></a><span class="sd">        Returns:</span>
+</span><span id="StreamingSimulation-217"><a href="#StreamingSimulation-217"><span class="linenos">217</span></a><span class="sd">            float: The calculated dynamic threshold based on the percentile of</span>
+</span><span id="StreamingSimulation-218"><a href="#StreamingSimulation-218"><span class="linenos">218</span></a><span class="sd">            historical scores, or the static threshold if no scores are available.</span>
+</span><span id="StreamingSimulation-219"><a href="#StreamingSimulation-219"><span class="linenos">219</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-220"><a href="#StreamingSimulation-220"><span class="linenos">220</span></a>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="StreamingSimulation-221"><a href="#StreamingSimulation-221"><span class="linenos">221</span></a>            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">percentile</span><span class="p">)</span>
+</span><span id="StreamingSimulation-222"><a href="#StreamingSimulation-222"><span class="linenos">222</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>  <span class="c1"># Fallback to static threshold if no scores are available</span>
+</span><span id="StreamingSimulation-223"><a href="#StreamingSimulation-223"><span class="linenos">223</span></a>
+</span><span id="StreamingSimulation-224"><a href="#StreamingSimulation-224"><span class="linenos">224</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_stream_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation-225"><a href="#StreamingSimulation-225"><span class="linenos">225</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-226"><a href="#StreamingSimulation-226"><span class="linenos">226</span></a><span class="sd">        Streams data from the data source in chunks and places each chunk into a queue.</span>
+</span><span id="StreamingSimulation-227"><a href="#StreamingSimulation-227"><span class="linenos">227</span></a><span class="sd">        This method iterates over the data source in increments of `chunk_size` and </span>
+</span><span id="StreamingSimulation-228"><a href="#StreamingSimulation-228"><span class="linenos">228</span></a><span class="sd">        streams each chunk into a queue for further processing. The streaming process </span>
+</span><span id="StreamingSimulation-229"><a href="#StreamingSimulation-229"><span class="linenos">229</span></a><span class="sd">        can be controlled using the `streaming_active` flag, and a delay between </span>
+</span><span id="StreamingSimulation-230"><a href="#StreamingSimulation-230"><span class="linenos">230</span></a><span class="sd">        chunks is introduced using `stream_interval`.</span>
+</span><span id="StreamingSimulation-231"><a href="#StreamingSimulation-231"><span class="linenos">231</span></a><span class="sd">        Yields:</span>
+</span><span id="StreamingSimulation-232"><a href="#StreamingSimulation-232"><span class="linenos">232</span></a><span class="sd">            None: This method does not return any value but streams data chunks </span>
+</span><span id="StreamingSimulation-233"><a href="#StreamingSimulation-233"><span class="linenos">233</span></a><span class="sd">            into the queue.</span>
+</span><span id="StreamingSimulation-234"><a href="#StreamingSimulation-234"><span class="linenos">234</span></a><span class="sd">        Attributes:</span>
+</span><span id="StreamingSimulation-235"><a href="#StreamingSimulation-235"><span class="linenos">235</span></a><span class="sd">            data_source (pd.DataFrame): The source of data to be streamed.</span>
+</span><span id="StreamingSimulation-236"><a href="#StreamingSimulation-236"><span class="linenos">236</span></a><span class="sd">            chunk_size (int): The size of each data chunk to be streamed.</span>
+</span><span id="StreamingSimulation-237"><a href="#StreamingSimulation-237"><span class="linenos">237</span></a><span class="sd">            queue (queue.Queue): The queue where data chunks are placed.</span>
+</span><span id="StreamingSimulation-238"><a href="#StreamingSimulation-238"><span class="linenos">238</span></a><span class="sd">            stream_interval (float): The time interval (in seconds) between streaming </span>
+</span><span id="StreamingSimulation-239"><a href="#StreamingSimulation-239"><span class="linenos">239</span></a><span class="sd">                consecutive chunks.</span>
+</span><span id="StreamingSimulation-240"><a href="#StreamingSimulation-240"><span class="linenos">240</span></a><span class="sd">            streaming_active (bool): A flag to control the streaming process. If set </span>
+</span><span id="StreamingSimulation-241"><a href="#StreamingSimulation-241"><span class="linenos">241</span></a><span class="sd">                to False, the streaming stops.</span>
+</span><span id="StreamingSimulation-242"><a href="#StreamingSimulation-242"><span class="linenos">242</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-243"><a href="#StreamingSimulation-243"><span class="linenos">243</span></a>       
+</span><span id="StreamingSimulation-244"><a href="#StreamingSimulation-244"><span class="linenos">244</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">):</span>
+</span><span id="StreamingSimulation-245"><a href="#StreamingSimulation-245"><span class="linenos">245</span></a>            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span><span class="p">:</span>
+</span><span id="StreamingSimulation-246"><a href="#StreamingSimulation-246"><span class="linenos">246</span></a>                <span class="k">break</span>
+</span><span id="StreamingSimulation-247"><a href="#StreamingSimulation-247"><span class="linenos">247</span></a>            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span><span class="p">]</span>
+</span><span id="StreamingSimulation-248"><a href="#StreamingSimulation-248"><span class="linenos">248</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span><span id="StreamingSimulation-249"><a href="#StreamingSimulation-249"><span class="linenos">249</span></a>            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_interval</span><span class="p">)</span>
+</span><span id="StreamingSimulation-250"><a href="#StreamingSimulation-250"><span class="linenos">250</span></a>
+</span><span id="StreamingSimulation-251"><a href="#StreamingSimulation-251"><span class="linenos">251</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_plot_from_main_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation-252"><a href="#StreamingSimulation-252"><span class="linenos">252</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-253"><a href="#StreamingSimulation-253"><span class="linenos">253</span></a><span class="sd">        Continuously plots anomaly detection results and events in real-time from the main thread.</span>
+</span><span id="StreamingSimulation-254"><a href="#StreamingSimulation-254"><span class="linenos">254</span></a><span class="sd">        This method is designed to run in a loop, updating the plot with data from a queue until</span>
+</span><span id="StreamingSimulation-255"><a href="#StreamingSimulation-255"><span class="linenos">255</span></a><span class="sd">        the streaming process is deactivated and the queue is empty. It visualizes anomaly scores,</span>
+</span><span id="StreamingSimulation-256"><a href="#StreamingSimulation-256"><span class="linenos">256</span></a><span class="sd">        thresholds, and events on a time series plot.</span>
+</span><span id="StreamingSimulation-257"><a href="#StreamingSimulation-257"><span class="linenos">257</span></a><span class="sd">        Key Features:</span>
+</span><span id="StreamingSimulation-258"><a href="#StreamingSimulation-258"><span class="linenos">258</span></a><span class="sd">        - Displays anomaly scores as a line plot.</span>
+</span><span id="StreamingSimulation-259"><a href="#StreamingSimulation-259"><span class="linenos">259</span></a><span class="sd">        - Highlights anomalies exceeding the threshold with red scatter points.</span>
+</span><span id="StreamingSimulation-260"><a href="#StreamingSimulation-260"><span class="linenos">260</span></a><span class="sd">        - Dynamically calculates the threshold if enabled, otherwise uses a static threshold.</span>
+</span><span id="StreamingSimulation-261"><a href="#StreamingSimulation-261"><span class="linenos">261</span></a><span class="sd">        - Visualizes events as vertical lines and shaded regions with customizable labels and colors.</span>
+</span><span id="StreamingSimulation-262"><a href="#StreamingSimulation-262"><span class="linenos">262</span></a><span class="sd">        Interactive Mode:</span>
+</span><span id="StreamingSimulation-263"><a href="#StreamingSimulation-263"><span class="linenos">263</span></a><span class="sd">        - Uses Matplotlib&#39;s interactive mode (`plt.ion()`) to update the plot in real-time.</span>
+</span><span id="StreamingSimulation-264"><a href="#StreamingSimulation-264"><span class="linenos">264</span></a><span class="sd">        - Ensures the plot is cleared and updated with new data during each iteration.</span>
+</span><span id="StreamingSimulation-265"><a href="#StreamingSimulation-265"><span class="linenos">265</span></a><span class="sd">        Cleanup:</span>
+</span><span id="StreamingSimulation-266"><a href="#StreamingSimulation-266"><span class="linenos">266</span></a><span class="sd">        - Disables interactive mode (`plt.ioff()`) and closes all figures to free memory after</span>
+</span><span id="StreamingSimulation-267"><a href="#StreamingSimulation-267"><span class="linenos">267</span></a><span class="sd">          the loop ends.</span>
+</span><span id="StreamingSimulation-268"><a href="#StreamingSimulation-268"><span class="linenos">268</span></a><span class="sd">        Raises:</span>
+</span><span id="StreamingSimulation-269"><a href="#StreamingSimulation-269"><span class="linenos">269</span></a><span class="sd">            queue.Empty: If the plot queue is empty and no data is available within the timeout.</span>
+</span><span id="StreamingSimulation-270"><a href="#StreamingSimulation-270"><span class="linenos">270</span></a><span class="sd">        Notes:</span>
+</span><span id="StreamingSimulation-271"><a href="#StreamingSimulation-271"><span class="linenos">271</span></a><span class="sd">            - This method assumes `self.plot_queue` is a thread-safe queue containing tuples of</span>
+</span><span id="StreamingSimulation-272"><a href="#StreamingSimulation-272"><span class="linenos">272</span></a><span class="sd">              filtered data and anomaly scores.</span>
+</span><span id="StreamingSimulation-273"><a href="#StreamingSimulation-273"><span class="linenos">273</span></a><span class="sd">            - The `self.events` attribute should be a DataFrame with columns &#39;start&#39;, &#39;end&#39;,</span>
+</span><span id="StreamingSimulation-274"><a href="#StreamingSimulation-274"><span class="linenos">274</span></a><span class="sd">              &#39;color&#39;, and &#39;label&#39; to define event visualization.</span>
+</span><span id="StreamingSimulation-275"><a href="#StreamingSimulation-275"><span class="linenos">275</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-276"><a href="#StreamingSimulation-276"><span class="linenos">276</span></a>        
+</span><span id="StreamingSimulation-277"><a href="#StreamingSimulation-277"><span class="linenos">277</span></a>        <span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>  <span class="c1"># Enable interactive mode</span>
+</span><span id="StreamingSimulation-278"><a href="#StreamingSimulation-278"><span class="linenos">278</span></a>        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">empty</span><span class="p">():</span>
+</span><span id="StreamingSimulation-279"><a href="#StreamingSimulation-279"><span class="linenos">279</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="StreamingSimulation-280"><a href="#StreamingSimulation-280"><span class="linenos">280</span></a>                <span class="n">filtered_data</span><span class="p">,</span> <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="StreamingSimulation-281"><a href="#StreamingSimulation-281"><span class="linenos">281</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>  <span class="c1"># Clear the current figure</span>
+</span><span id="StreamingSimulation-282"><a href="#StreamingSimulation-282"><span class="linenos">282</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span id="StreamingSimulation-283"><a href="#StreamingSimulation-283"><span class="linenos">283</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">filtered_scores</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Anomaly Scores&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-284"><a href="#StreamingSimulation-284"><span class="linenos">284</span></a>
+</span><span id="StreamingSimulation-285"><a href="#StreamingSimulation-285"><span class="linenos">285</span></a>                <span class="c1"># Determine the threshold (static or dynamic)</span>
+</span><span id="StreamingSimulation-286"><a href="#StreamingSimulation-286"><span class="linenos">286</span></a>                <span class="n">current_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calculate_dynamic_threshold</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_threshold</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+</span><span id="StreamingSimulation-287"><a href="#StreamingSimulation-287"><span class="linenos">287</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">current_threshold</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Threshold&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-288"><a href="#StreamingSimulation-288"><span class="linenos">288</span></a>
+</span><span id="StreamingSimulation-289"><a href="#StreamingSimulation-289"><span class="linenos">289</span></a>                <span class="c1"># Highlight anomalies</span>
+</span><span id="StreamingSimulation-290"><a href="#StreamingSimulation-290"><span class="linenos">290</span></a>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_scores</span><span class="p">)):</span>
+</span><span id="StreamingSimulation-291"><a href="#StreamingSimulation-291"><span class="linenos">291</span></a>                    <span class="k">if</span> <span class="n">filtered_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="n">current_threshold</span><span class="p">:</span>
+</span><span id="StreamingSimulation-292"><a href="#StreamingSimulation-292"><span class="linenos">292</span></a>                        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">filtered_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-293"><a href="#StreamingSimulation-293"><span class="linenos">293</span></a>
+</span><span id="StreamingSimulation-294"><a href="#StreamingSimulation-294"><span class="linenos">294</span></a>                <span class="c1"># Plot events as vertical lines</span>
+</span><span id="StreamingSimulation-295"><a href="#StreamingSimulation-295"><span class="linenos">295</span></a>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StreamingSimulation-296"><a href="#StreamingSimulation-296"><span class="linenos">296</span></a>                    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="StreamingSimulation-297"><a href="#StreamingSimulation-297"><span class="linenos">297</span></a>                        <span class="n">event_start</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">])</span>
+</span><span id="StreamingSimulation-298"><a href="#StreamingSimulation-298"><span class="linenos">298</span></a>                        <span class="n">event_end</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">])</span>
+</span><span id="StreamingSimulation-299"><a href="#StreamingSimulation-299"><span class="linenos">299</span></a>                        <span class="n">color</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+</span><span id="StreamingSimulation-300"><a href="#StreamingSimulation-300"><span class="linenos">300</span></a>                        <span class="n">label</span> <span class="o">=</span> <span class="n">event</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</span><span id="StreamingSimulation-301"><a href="#StreamingSimulation-301"><span class="linenos">301</span></a>                        <span class="k">if</span> <span class="n">event_start</span><span class="o">.</span><span class="n">date</span><span class="p">()</span> <span class="o">==</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">():</span>
+</span><span id="StreamingSimulation-302"><a href="#StreamingSimulation-302"><span class="linenos">302</span></a>                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+</span><span id="StreamingSimulation-303"><a href="#StreamingSimulation-303"><span class="linenos">303</span></a>                            <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">event_start</span><span class="p">,</span> <span class="n">event_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span id="StreamingSimulation-304"><a href="#StreamingSimulation-304"><span class="linenos">304</span></a>                            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">event_end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-305"><a href="#StreamingSimulation-305"><span class="linenos">305</span></a>
+</span><span id="StreamingSimulation-306"><a href="#StreamingSimulation-306"><span class="linenos">306</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-307"><a href="#StreamingSimulation-307"><span class="linenos">307</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Anomaly Score&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-308"><a href="#StreamingSimulation-308"><span class="linenos">308</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Anomaly Detection with Events&#39;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-309"><a href="#StreamingSimulation-309"><span class="linenos">309</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="StreamingSimulation-310"><a href="#StreamingSimulation-310"><span class="linenos">310</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span><span id="StreamingSimulation-311"><a href="#StreamingSimulation-311"><span class="linenos">311</span></a>                <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+</span><span id="StreamingSimulation-312"><a href="#StreamingSimulation-312"><span class="linenos">312</span></a>            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+</span><span id="StreamingSimulation-313"><a href="#StreamingSimulation-313"><span class="linenos">313</span></a>                <span class="k">continue</span>
+</span><span id="StreamingSimulation-314"><a href="#StreamingSimulation-314"><span class="linenos">314</span></a>        <span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>  <span class="c1"># Disable interactive mode</span>
+</span><span id="StreamingSimulation-315"><a href="#StreamingSimulation-315"><span class="linenos">315</span></a>        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="StreamingSimulation-316"><a href="#StreamingSimulation-316"><span class="linenos">316</span></a>        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>  <span class="c1"># Close all figures to free memory</span>
+</span><span id="StreamingSimulation-317"><a href="#StreamingSimulation-317"><span class="linenos">317</span></a>
+</span><span id="StreamingSimulation-318"><a href="#StreamingSimulation-318"><span class="linenos">318</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation-319"><a href="#StreamingSimulation-319"><span class="linenos">319</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-320"><a href="#StreamingSimulation-320"><span class="linenos">320</span></a><span class="sd">        Consume data from the queue and process it with the anomaly detector.</span>
+</span><span id="StreamingSimulation-321"><a href="#StreamingSimulation-321"><span class="linenos">321</span></a>
+</span><span id="StreamingSimulation-322"><a href="#StreamingSimulation-322"><span class="linenos">322</span></a><span class="sd">        This method continuously retrieves data chunks from a queue, processes them,</span>
+</span><span id="StreamingSimulation-323"><a href="#StreamingSimulation-323"><span class="linenos">323</span></a><span class="sd">        and performs anomaly detection using a pre-trained detector. The results are</span>
+</span><span id="StreamingSimulation-324"><a href="#StreamingSimulation-324"><span class="linenos">324</span></a><span class="sd">        then prepared for visualization and sent to a plotting queue.</span>
+</span><span id="StreamingSimulation-325"><a href="#StreamingSimulation-325"><span class="linenos">325</span></a>
+</span><span id="StreamingSimulation-326"><a href="#StreamingSimulation-326"><span class="linenos">326</span></a><span class="sd">        Workflow:</span>
+</span><span id="StreamingSimulation-327"><a href="#StreamingSimulation-327"><span class="linenos">327</span></a><span class="sd">        - Retrieve a chunk of data from the queue.</span>
+</span><span id="StreamingSimulation-328"><a href="#StreamingSimulation-328"><span class="linenos">328</span></a><span class="sd">        - Append the chunk to the historical data, maintaining a rolling window of the last 5000 records.</span>
+</span><span id="StreamingSimulation-329"><a href="#StreamingSimulation-329"><span class="linenos">329</span></a><span class="sd">        - Preprocess the data for anomaly detection.</span>
+</span><span id="StreamingSimulation-330"><a href="#StreamingSimulation-330"><span class="linenos">330</span></a><span class="sd">        - Train the anomaly detector if it is not already trained and sufficient data is available.</span>
+</span><span id="StreamingSimulation-331"><a href="#StreamingSimulation-331"><span class="linenos">331</span></a><span class="sd">        - Perform anomaly detection on the current chunk if the detector is trained.</span>
+</span><span id="StreamingSimulation-332"><a href="#StreamingSimulation-332"><span class="linenos">332</span></a><span class="sd">        - Update historical scores and count the number of anomalies detected in the current chunk.</span>
+</span><span id="StreamingSimulation-333"><a href="#StreamingSimulation-333"><span class="linenos">333</span></a><span class="sd">        - Filter historical data and scores to include only the last three hours of data.</span>
+</span><span id="StreamingSimulation-334"><a href="#StreamingSimulation-334"><span class="linenos">334</span></a><span class="sd">        - Send the filtered data and scores to the plotting queue for visualization.</span>
+</span><span id="StreamingSimulation-335"><a href="#StreamingSimulation-335"><span class="linenos">335</span></a>
+</span><span id="StreamingSimulation-336"><a href="#StreamingSimulation-336"><span class="linenos">336</span></a><span class="sd">        Exceptions:</span>
+</span><span id="StreamingSimulation-337"><a href="#StreamingSimulation-337"><span class="linenos">337</span></a><span class="sd">        - Handles `queue.Empty` exceptions when the queue is empty and continues processing.</span>
+</span><span id="StreamingSimulation-338"><a href="#StreamingSimulation-338"><span class="linenos">338</span></a><span class="sd">        - Catches and logs any other exceptions that occur during processing.</span>
+</span><span id="StreamingSimulation-339"><a href="#StreamingSimulation-339"><span class="linenos">339</span></a>
+</span><span id="StreamingSimulation-340"><a href="#StreamingSimulation-340"><span class="linenos">340</span></a><span class="sd">        Attributes:</span>
+</span><span id="StreamingSimulation-341"><a href="#StreamingSimulation-341"><span class="linenos">341</span></a><span class="sd">        - self.streaming_active (bool): Flag to control the streaming process.</span>
+</span><span id="StreamingSimulation-342"><a href="#StreamingSimulation-342"><span class="linenos">342</span></a><span class="sd">        - self.queue (queue.Queue): Queue from which data chunks are consumed.</span>
+</span><span id="StreamingSimulation-343"><a href="#StreamingSimulation-343"><span class="linenos">343</span></a><span class="sd">        - self.historical_data (pd.DataFrame): DataFrame storing historical data for processing.</span>
+</span><span id="StreamingSimulation-344"><a href="#StreamingSimulation-344"><span class="linenos">344</span></a><span class="sd">        - self.historical_scores (np.ndarray): Array storing historical anomaly scores.</span>
+</span><span id="StreamingSimulation-345"><a href="#StreamingSimulation-345"><span class="linenos">345</span></a><span class="sd">        - self.window_size (int): Size of the rolling window for preprocessing.</span>
+</span><span id="StreamingSimulation-346"><a href="#StreamingSimulation-346"><span class="linenos">346</span></a><span class="sd">        - self.detector (object): Anomaly detector instance with `fit` and `detect` methods.</span>
+</span><span id="StreamingSimulation-347"><a href="#StreamingSimulation-347"><span class="linenos">347</span></a><span class="sd">        - self.plot_queue (queue.Queue): Queue to send data and scores for visualization.</span>
+</span><span id="StreamingSimulation-348"><a href="#StreamingSimulation-348"><span class="linenos">348</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-349"><a href="#StreamingSimulation-349"><span class="linenos">349</span></a>        
+</span><span id="StreamingSimulation-350"><a href="#StreamingSimulation-350"><span class="linenos">350</span></a>        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span><span class="p">:</span>
+</span><span id="StreamingSimulation-351"><a href="#StreamingSimulation-351"><span class="linenos">351</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="StreamingSimulation-352"><a href="#StreamingSimulation-352"><span class="linenos">352</span></a>                <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="StreamingSimulation-353"><a href="#StreamingSimulation-353"><span class="linenos">353</span></a>                <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StreamingSimulation-354"><a href="#StreamingSimulation-354"><span class="linenos">354</span></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="p">,</span> <span class="n">chunk</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">5000</span><span class="p">:]</span>
+</span><span id="StreamingSimulation-355"><a href="#StreamingSimulation-355"><span class="linenos">355</span></a>                    <span class="n">processed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">:])</span>
+</span><span id="StreamingSimulation-356"><a href="#StreamingSimulation-356"><span class="linenos">356</span></a>
+</span><span id="StreamingSimulation-357"><a href="#StreamingSimulation-357"><span class="linenos">357</span></a>                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">trained</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">processed_data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">window_size</span><span class="p">:</span>
+</span><span id="StreamingSimulation-358"><a href="#StreamingSimulation-358"><span class="linenos">358</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">processed_data</span><span class="p">)</span>
+</span><span id="StreamingSimulation-359"><a href="#StreamingSimulation-359"><span class="linenos">359</span></a>
+</span><span id="StreamingSimulation-360"><a href="#StreamingSimulation-360"><span class="linenos">360</span></a>                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">trained</span><span class="p">:</span>
+</span><span id="StreamingSimulation-361"><a href="#StreamingSimulation-361"><span class="linenos">361</span></a>                        <span class="n">predictions</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
+</span><span id="StreamingSimulation-362"><a href="#StreamingSimulation-362"><span class="linenos">362</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+</span><span id="StreamingSimulation-363"><a href="#StreamingSimulation-363"><span class="linenos">363</span></a>
+</span><span id="StreamingSimulation-364"><a href="#StreamingSimulation-364"><span class="linenos">364</span></a>                        <span class="n">anomaly_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="StreamingSimulation-365"><a href="#StreamingSimulation-365"><span class="linenos">365</span></a>                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="n">anomaly_count</span><span class="si">}</span><span class="s2"> anomalies in the current chunk.&quot;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-366"><a href="#StreamingSimulation-366"><span class="linenos">366</span></a>
+</span><span id="StreamingSimulation-367"><a href="#StreamingSimulation-367"><span class="linenos">367</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</span><span id="StreamingSimulation-368"><a href="#StreamingSimulation-368"><span class="linenos">368</span></a>                        <span class="n">three_hours_ago</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="StreamingSimulation-369"><a href="#StreamingSimulation-369"><span class="linenos">369</span></a>                        <span class="n">filtered_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">three_hours_ago</span><span class="p">]</span>
+</span><span id="StreamingSimulation-370"><a href="#StreamingSimulation-370"><span class="linenos">370</span></a>
+</span><span id="StreamingSimulation-371"><a href="#StreamingSimulation-371"><span class="linenos">371</span></a>                        <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">):]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="StreamingSimulation-372"><a href="#StreamingSimulation-372"><span class="linenos">372</span></a>
+</span><span id="StreamingSimulation-373"><a href="#StreamingSimulation-373"><span class="linenos">373</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">filtered_data</span><span class="p">,</span> <span class="n">filtered_scores</span><span class="p">))</span>
+</span><span id="StreamingSimulation-374"><a href="#StreamingSimulation-374"><span class="linenos">374</span></a>            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+</span><span id="StreamingSimulation-375"><a href="#StreamingSimulation-375"><span class="linenos">375</span></a>                <span class="k">continue</span>
+</span><span id="StreamingSimulation-376"><a href="#StreamingSimulation-376"><span class="linenos">376</span></a>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="StreamingSimulation-377"><a href="#StreamingSimulation-377"><span class="linenos">377</span></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing stream: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-378"><a href="#StreamingSimulation-378"><span class="linenos">378</span></a>
+</span><span id="StreamingSimulation-379"><a href="#StreamingSimulation-379"><span class="linenos">379</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation-380"><a href="#StreamingSimulation-380"><span class="linenos">380</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-381"><a href="#StreamingSimulation-381"><span class="linenos">381</span></a><span class="sd">        Executes the streaming anomaly detection simulation.</span>
+</span><span id="StreamingSimulation-382"><a href="#StreamingSimulation-382"><span class="linenos">382</span></a><span class="sd">        This method starts two separate threads:</span>
+</span><span id="StreamingSimulation-383"><a href="#StreamingSimulation-383"><span class="linenos">383</span></a><span class="sd">        1. A streaming thread that simulates or handles incoming data.</span>
+</span><span id="StreamingSimulation-384"><a href="#StreamingSimulation-384"><span class="linenos">384</span></a><span class="sd">        2. A processing thread that processes the streamed data.</span>
+</span><span id="StreamingSimulation-385"><a href="#StreamingSimulation-385"><span class="linenos">385</span></a><span class="sd">        The simulation remains active until interrupted by a KeyboardInterrupt</span>
+</span><span id="StreamingSimulation-386"><a href="#StreamingSimulation-386"><span class="linenos">386</span></a><span class="sd">        (e.g., pressing Ctrl+C). Upon interruption, the simulation stops gracefully</span>
+</span><span id="StreamingSimulation-387"><a href="#StreamingSimulation-387"><span class="linenos">387</span></a><span class="sd">        by setting `self.streaming_active` to False and joining both threads.</span>
+</span><span id="StreamingSimulation-388"><a href="#StreamingSimulation-388"><span class="linenos">388</span></a><span class="sd">        Additionally, this method handles plotting from the main thread.</span>
+</span><span id="StreamingSimulation-389"><a href="#StreamingSimulation-389"><span class="linenos">389</span></a><span class="sd">        Raises:</span>
+</span><span id="StreamingSimulation-390"><a href="#StreamingSimulation-390"><span class="linenos">390</span></a><span class="sd">            KeyboardInterrupt: If the simulation is manually stopped by the user.</span>
+</span><span id="StreamingSimulation-391"><a href="#StreamingSimulation-391"><span class="linenos">391</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation-392"><a href="#StreamingSimulation-392"><span class="linenos">392</span></a>       
+</span><span id="StreamingSimulation-393"><a href="#StreamingSimulation-393"><span class="linenos">393</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="StreamingSimulation-394"><a href="#StreamingSimulation-394"><span class="linenos">394</span></a>
+</span><span id="StreamingSimulation-395"><a href="#StreamingSimulation-395"><span class="linenos">395</span></a>        <span class="n">stream_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_data</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="StreamingSimulation-396"><a href="#StreamingSimulation-396"><span class="linenos">396</span></a>        <span class="n">process_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">process_stream</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="StreamingSimulation-397"><a href="#StreamingSimulation-397"><span class="linenos">397</span></a>
+</span><span id="StreamingSimulation-398"><a href="#StreamingSimulation-398"><span class="linenos">398</span></a>        <span class="n">stream_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span id="StreamingSimulation-399"><a href="#StreamingSimulation-399"><span class="linenos">399</span></a>        <span class="n">process_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span id="StreamingSimulation-400"><a href="#StreamingSimulation-400"><span class="linenos">400</span></a>
+</span><span id="StreamingSimulation-401"><a href="#StreamingSimulation-401"><span class="linenos">401</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="StreamingSimulation-402"><a href="#StreamingSimulation-402"><span class="linenos">402</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_plot_from_main_thread</span><span class="p">()</span>
+</span><span id="StreamingSimulation-403"><a href="#StreamingSimulation-403"><span class="linenos">403</span></a>        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span><span id="StreamingSimulation-404"><a href="#StreamingSimulation-404"><span class="linenos">404</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stopping simulation...&quot;</span><span class="p">)</span>
+</span><span id="StreamingSimulation-405"><a href="#StreamingSimulation-405"><span class="linenos">405</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="StreamingSimulation-406"><a href="#StreamingSimulation-406"><span class="linenos">406</span></a>
+</span><span id="StreamingSimulation-407"><a href="#StreamingSimulation-407"><span class="linenos">407</span></a>        <span class="n">stream_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span><span id="StreamingSimulation-408"><a href="#StreamingSimulation-408"><span class="linenos">408</span></a>        <span class="n">process_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Module: streaming_anomaly_detection</p>
+
+<p>This module contains the <code><a href="#StreamingSimulation">StreamingSimulation</a></code> class, which simulates real-time data streaming, processes the data for anomaly detection, and visualizes the results. It integrates a streaming data manager, an anomaly detector, and event-based visualization.</p>
+
+<p>Classes:
+    - StreamingSimulation: Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</p>
+
+<p>Class StreamingSimulation:
+    Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.</p>
+
+<pre><code>Attributes:
+    window_size (int): The size of the sliding window for anomaly detection.
+    threshold (float): The static threshold for anomaly detection.
+    dynamic_threshold (bool): Whether to use a dynamic threshold based on historical scores.
+    percentile (int): The percentile used for calculating the dynamic threshold.
+    manager (StreamingDataManager): Manages the streaming of data chunks.
+    detector (AnomalyDetector): Detects anomalies in the data.
+    historical_data (pd.DataFrame): Stores historical data for processing.
+    historical_scores (list): Stores historical anomaly scores.
+    data_source (pd.DataFrame): The source data for streaming.
+    chunk_size (int): The size of each data chunk for streaming.
+    stream_interval (int): The interval (in seconds) between streaming chunks.
+    queue (queue.Queue): Queue for storing data chunks to be processed.
+    plot_queue (queue.Queue): Queue for storing data to be plotted.
+    streaming_active (bool): Indicates whether the streaming simulation is active.
+    events (pd.DataFrame): DataFrame containing event start and end times, colors, and labels.
+
+Methods:
+    __init__(data: pd.DataFrame, chunk_size=100, stream_interval=1, window_size=120, threshold=0.15, dynamic_threshold=False, percentile=95, events=None):
+        Initializes the StreamingSimulation instance with the given parameters.
+
+    preprocess(chunk: pd.DataFrame) -&gt; np.ndarray:
+        Preprocesses a data chunk by selecting numeric columns and filling missing values.
+
+    _calculate_dynamic_threshold() -&gt; float:
+        Calculates the dynamic threshold based on the specified percentile of historical scores.
+
+    _stream_data():
+        Simulates real-time data streaming by adding data chunks to the queue.
+
+    _plot_from_main_thread():
+        Continuously plots data and anomaly scores from the main thread, including event visualization.
+
+    process_stream():
+        Consumes data from the queue, processes it with the anomaly detector, and updates historical data and scores.
+
+    run():
+        Starts the streaming, processing, and plotting threads. Handles graceful shutdown on interruption.
+</code></pre>
+</div>
+
+
+                            <div id="StreamingSimulation.__init__" class="classattr">
+                                        <input id="StreamingSimulation.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">StreamingSimulation</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">data</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>,</span><span class="param">	<span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span>,</span><span class="param">	<span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span>,</span><span class="param">	<span class="n">window_size</span><span class="o">=</span><span class="mi">120</span>,</span><span class="param">	<span class="n">threshold</span><span class="o">=</span><span class="mf">0.15</span>,</span><span class="param">	<span class="n">dynamic_threshold</span><span class="o">=</span><span class="kc">False</span>,</span><span class="param">	<span class="n">percentile</span><span class="o">=</span><span class="mi">95</span>,</span><span class="param">	<span class="n">events</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="StreamingSimulation.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamingSimulation.__init__-178"><a href="#StreamingSimulation.__init__-178"><span class="linenos">178</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">stream_interval</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">dynamic_threshold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="mi">95</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="StreamingSimulation.__init__-179"><a href="#StreamingSimulation.__init__-179"><span class="linenos">179</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
+</span><span id="StreamingSimulation.__init__-180"><a href="#StreamingSimulation.__init__-180"><span class="linenos">180</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+</span><span id="StreamingSimulation.__init__-181"><a href="#StreamingSimulation.__init__-181"><span class="linenos">181</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_threshold</span> <span class="o">=</span> <span class="n">dynamic_threshold</span>
+</span><span id="StreamingSimulation.__init__-182"><a href="#StreamingSimulation.__init__-182"><span class="linenos">182</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">percentile</span> <span class="o">=</span> <span class="n">percentile</span>
+</span><span id="StreamingSimulation.__init__-183"><a href="#StreamingSimulation.__init__-183"><span class="linenos">183</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">manager</span> <span class="o">=</span> <span class="n">StreamingDataManager</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">chunk_size</span><span class="p">,</span> <span class="n">stream_interval</span><span class="p">)</span>
+</span><span id="StreamingSimulation.__init__-184"><a href="#StreamingSimulation.__init__-184"><span class="linenos">184</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">detector</span> <span class="o">=</span> <span class="n">AnomalyDetector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">)</span>
+</span><span id="StreamingSimulation.__init__-185"><a href="#StreamingSimulation.__init__-185"><span class="linenos">185</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</span><span id="StreamingSimulation.__init__-186"><a href="#StreamingSimulation.__init__-186"><span class="linenos">186</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="StreamingSimulation.__init__-187"><a href="#StreamingSimulation.__init__-187"><span class="linenos">187</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data_source</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="StreamingSimulation.__init__-188"><a href="#StreamingSimulation.__init__-188"><span class="linenos">188</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">chunk_size</span> <span class="o">=</span> <span class="n">chunk_size</span>
+</span><span id="StreamingSimulation.__init__-189"><a href="#StreamingSimulation.__init__-189"><span class="linenos">189</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_interval</span> <span class="o">=</span> <span class="n">stream_interval</span>
+</span><span id="StreamingSimulation.__init__-190"><a href="#StreamingSimulation.__init__-190"><span class="linenos">190</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+</span><span id="StreamingSimulation.__init__-191"><a href="#StreamingSimulation.__init__-191"><span class="linenos">191</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+</span><span id="StreamingSimulation.__init__-192"><a href="#StreamingSimulation.__init__-192"><span class="linenos">192</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="StreamingSimulation.__init__-193"><a href="#StreamingSimulation.__init__-193"><span class="linenos">193</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="n">events</span>  <span class="c1"># DataFrame with event start and end times</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="StreamingSimulation.window_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">window_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.window_size"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.threshold" class="classattr">
+                                <div class="attr variable">
+            <span class="name">threshold</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.threshold"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.dynamic_threshold" class="classattr">
+                                <div class="attr variable">
+            <span class="name">dynamic_threshold</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.dynamic_threshold"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.percentile" class="classattr">
+                                <div class="attr variable">
+            <span class="name">percentile</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.percentile"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.manager" class="classattr">
+                                <div class="attr variable">
+            <span class="name">manager</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.manager"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.detector" class="classattr">
+                                <div class="attr variable">
+            <span class="name">detector</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.detector"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.historical_data" class="classattr">
+                                <div class="attr variable">
+            <span class="name">historical_data</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.historical_data"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.historical_scores" class="classattr">
+                                <div class="attr variable">
+            <span class="name">historical_scores</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.historical_scores"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.data_source" class="classattr">
+                                <div class="attr variable">
+            <span class="name">data_source</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.data_source"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.chunk_size" class="classattr">
+                                <div class="attr variable">
+            <span class="name">chunk_size</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.chunk_size"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.stream_interval" class="classattr">
+                                <div class="attr variable">
+            <span class="name">stream_interval</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.stream_interval"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.queue" class="classattr">
+                                <div class="attr variable">
+            <span class="name">queue</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.queue"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.plot_queue" class="classattr">
+                                <div class="attr variable">
+            <span class="name">plot_queue</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.plot_queue"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.streaming_active" class="classattr">
+                                <div class="attr variable">
+            <span class="name">streaming_active</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.streaming_active"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.events" class="classattr">
+                                <div class="attr variable">
+            <span class="name">events</span>
+
+        
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.events"></a>
+    
+    
+
+                            </div>
+                            <div id="StreamingSimulation.preprocess" class="classattr">
+                                        <input id="StreamingSimulation.preprocess-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">preprocess</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">chunk</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="StreamingSimulation.preprocess-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.preprocess"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamingSimulation.preprocess-195"><a href="#StreamingSimulation.preprocess-195"><span class="linenos">195</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="StreamingSimulation.preprocess-196"><a href="#StreamingSimulation.preprocess-196"><span class="linenos">196</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.preprocess-197"><a href="#StreamingSimulation.preprocess-197"><span class="linenos">197</span></a><span class="sd">        Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.</span>
+</span><span id="StreamingSimulation.preprocess-198"><a href="#StreamingSimulation.preprocess-198"><span class="linenos">198</span></a>
+</span><span id="StreamingSimulation.preprocess-199"><a href="#StreamingSimulation.preprocess-199"><span class="linenos">199</span></a><span class="sd">        Args:</span>
+</span><span id="StreamingSimulation.preprocess-200"><a href="#StreamingSimulation.preprocess-200"><span class="linenos">200</span></a><span class="sd">            chunk (pd.DataFrame): The input DataFrame containing the data to preprocess.</span>
+</span><span id="StreamingSimulation.preprocess-201"><a href="#StreamingSimulation.preprocess-201"><span class="linenos">201</span></a>
+</span><span id="StreamingSimulation.preprocess-202"><a href="#StreamingSimulation.preprocess-202"><span class="linenos">202</span></a><span class="sd">        Returns:</span>
+</span><span id="StreamingSimulation.preprocess-203"><a href="#StreamingSimulation.preprocess-203"><span class="linenos">203</span></a><span class="sd">            np.ndarray: A NumPy array containing the preprocessed numeric data.</span>
+</span><span id="StreamingSimulation.preprocess-204"><a href="#StreamingSimulation.preprocess-204"><span class="linenos">204</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.preprocess-205"><a href="#StreamingSimulation.preprocess-205"><span class="linenos">205</span></a>        <span class="n">numeric_data</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="StreamingSimulation.preprocess-206"><a href="#StreamingSimulation.preprocess-206"><span class="linenos">206</span></a>        <span class="k">return</span> <span class="n">numeric_data</span><span class="o">.</span><span class="n">values</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.</p>
+
+<p>Args:
+    chunk (pd.DataFrame): The input DataFrame containing the data to preprocess.</p>
+
+<p>Returns:
+    np.ndarray: A NumPy array containing the preprocessed numeric data.</p>
+</div>
+
+
+                            </div>
+                            <div id="StreamingSimulation.process_stream" class="classattr">
+                                        <input id="StreamingSimulation.process_stream-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">process_stream</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="StreamingSimulation.process_stream-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.process_stream"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamingSimulation.process_stream-318"><a href="#StreamingSimulation.process_stream-318"><span class="linenos">318</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">process_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation.process_stream-319"><a href="#StreamingSimulation.process_stream-319"><span class="linenos">319</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.process_stream-320"><a href="#StreamingSimulation.process_stream-320"><span class="linenos">320</span></a><span class="sd">        Consume data from the queue and process it with the anomaly detector.</span>
+</span><span id="StreamingSimulation.process_stream-321"><a href="#StreamingSimulation.process_stream-321"><span class="linenos">321</span></a>
+</span><span id="StreamingSimulation.process_stream-322"><a href="#StreamingSimulation.process_stream-322"><span class="linenos">322</span></a><span class="sd">        This method continuously retrieves data chunks from a queue, processes them,</span>
+</span><span id="StreamingSimulation.process_stream-323"><a href="#StreamingSimulation.process_stream-323"><span class="linenos">323</span></a><span class="sd">        and performs anomaly detection using a pre-trained detector. The results are</span>
+</span><span id="StreamingSimulation.process_stream-324"><a href="#StreamingSimulation.process_stream-324"><span class="linenos">324</span></a><span class="sd">        then prepared for visualization and sent to a plotting queue.</span>
+</span><span id="StreamingSimulation.process_stream-325"><a href="#StreamingSimulation.process_stream-325"><span class="linenos">325</span></a>
+</span><span id="StreamingSimulation.process_stream-326"><a href="#StreamingSimulation.process_stream-326"><span class="linenos">326</span></a><span class="sd">        Workflow:</span>
+</span><span id="StreamingSimulation.process_stream-327"><a href="#StreamingSimulation.process_stream-327"><span class="linenos">327</span></a><span class="sd">        - Retrieve a chunk of data from the queue.</span>
+</span><span id="StreamingSimulation.process_stream-328"><a href="#StreamingSimulation.process_stream-328"><span class="linenos">328</span></a><span class="sd">        - Append the chunk to the historical data, maintaining a rolling window of the last 5000 records.</span>
+</span><span id="StreamingSimulation.process_stream-329"><a href="#StreamingSimulation.process_stream-329"><span class="linenos">329</span></a><span class="sd">        - Preprocess the data for anomaly detection.</span>
+</span><span id="StreamingSimulation.process_stream-330"><a href="#StreamingSimulation.process_stream-330"><span class="linenos">330</span></a><span class="sd">        - Train the anomaly detector if it is not already trained and sufficient data is available.</span>
+</span><span id="StreamingSimulation.process_stream-331"><a href="#StreamingSimulation.process_stream-331"><span class="linenos">331</span></a><span class="sd">        - Perform anomaly detection on the current chunk if the detector is trained.</span>
+</span><span id="StreamingSimulation.process_stream-332"><a href="#StreamingSimulation.process_stream-332"><span class="linenos">332</span></a><span class="sd">        - Update historical scores and count the number of anomalies detected in the current chunk.</span>
+</span><span id="StreamingSimulation.process_stream-333"><a href="#StreamingSimulation.process_stream-333"><span class="linenos">333</span></a><span class="sd">        - Filter historical data and scores to include only the last three hours of data.</span>
+</span><span id="StreamingSimulation.process_stream-334"><a href="#StreamingSimulation.process_stream-334"><span class="linenos">334</span></a><span class="sd">        - Send the filtered data and scores to the plotting queue for visualization.</span>
+</span><span id="StreamingSimulation.process_stream-335"><a href="#StreamingSimulation.process_stream-335"><span class="linenos">335</span></a>
+</span><span id="StreamingSimulation.process_stream-336"><a href="#StreamingSimulation.process_stream-336"><span class="linenos">336</span></a><span class="sd">        Exceptions:</span>
+</span><span id="StreamingSimulation.process_stream-337"><a href="#StreamingSimulation.process_stream-337"><span class="linenos">337</span></a><span class="sd">        - Handles `queue.Empty` exceptions when the queue is empty and continues processing.</span>
+</span><span id="StreamingSimulation.process_stream-338"><a href="#StreamingSimulation.process_stream-338"><span class="linenos">338</span></a><span class="sd">        - Catches and logs any other exceptions that occur during processing.</span>
+</span><span id="StreamingSimulation.process_stream-339"><a href="#StreamingSimulation.process_stream-339"><span class="linenos">339</span></a>
+</span><span id="StreamingSimulation.process_stream-340"><a href="#StreamingSimulation.process_stream-340"><span class="linenos">340</span></a><span class="sd">        Attributes:</span>
+</span><span id="StreamingSimulation.process_stream-341"><a href="#StreamingSimulation.process_stream-341"><span class="linenos">341</span></a><span class="sd">        - self.streaming_active (bool): Flag to control the streaming process.</span>
+</span><span id="StreamingSimulation.process_stream-342"><a href="#StreamingSimulation.process_stream-342"><span class="linenos">342</span></a><span class="sd">        - self.queue (queue.Queue): Queue from which data chunks are consumed.</span>
+</span><span id="StreamingSimulation.process_stream-343"><a href="#StreamingSimulation.process_stream-343"><span class="linenos">343</span></a><span class="sd">        - self.historical_data (pd.DataFrame): DataFrame storing historical data for processing.</span>
+</span><span id="StreamingSimulation.process_stream-344"><a href="#StreamingSimulation.process_stream-344"><span class="linenos">344</span></a><span class="sd">        - self.historical_scores (np.ndarray): Array storing historical anomaly scores.</span>
+</span><span id="StreamingSimulation.process_stream-345"><a href="#StreamingSimulation.process_stream-345"><span class="linenos">345</span></a><span class="sd">        - self.window_size (int): Size of the rolling window for preprocessing.</span>
+</span><span id="StreamingSimulation.process_stream-346"><a href="#StreamingSimulation.process_stream-346"><span class="linenos">346</span></a><span class="sd">        - self.detector (object): Anomaly detector instance with `fit` and `detect` methods.</span>
+</span><span id="StreamingSimulation.process_stream-347"><a href="#StreamingSimulation.process_stream-347"><span class="linenos">347</span></a><span class="sd">        - self.plot_queue (queue.Queue): Queue to send data and scores for visualization.</span>
+</span><span id="StreamingSimulation.process_stream-348"><a href="#StreamingSimulation.process_stream-348"><span class="linenos">348</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.process_stream-349"><a href="#StreamingSimulation.process_stream-349"><span class="linenos">349</span></a>        
+</span><span id="StreamingSimulation.process_stream-350"><a href="#StreamingSimulation.process_stream-350"><span class="linenos">350</span></a>        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-351"><a href="#StreamingSimulation.process_stream-351"><span class="linenos">351</span></a>            <span class="k">try</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-352"><a href="#StreamingSimulation.process_stream-352"><span class="linenos">352</span></a>                <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-353"><a href="#StreamingSimulation.process_stream-353"><span class="linenos">353</span></a>                <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-354"><a href="#StreamingSimulation.process_stream-354"><span class="linenos">354</span></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="p">,</span> <span class="n">chunk</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">5000</span><span class="p">:]</span>
+</span><span id="StreamingSimulation.process_stream-355"><a href="#StreamingSimulation.process_stream-355"><span class="linenos">355</span></a>                    <span class="n">processed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">:])</span>
+</span><span id="StreamingSimulation.process_stream-356"><a href="#StreamingSimulation.process_stream-356"><span class="linenos">356</span></a>
+</span><span id="StreamingSimulation.process_stream-357"><a href="#StreamingSimulation.process_stream-357"><span class="linenos">357</span></a>                    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">trained</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">processed_data</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">window_size</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-358"><a href="#StreamingSimulation.process_stream-358"><span class="linenos">358</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">processed_data</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-359"><a href="#StreamingSimulation.process_stream-359"><span class="linenos">359</span></a>
+</span><span id="StreamingSimulation.process_stream-360"><a href="#StreamingSimulation.process_stream-360"><span class="linenos">360</span></a>                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">trained</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-361"><a href="#StreamingSimulation.process_stream-361"><span class="linenos">361</span></a>                        <span class="n">predictions</span><span class="p">,</span> <span class="n">scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">detector</span><span class="o">.</span><span class="n">detect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
+</span><span id="StreamingSimulation.process_stream-362"><a href="#StreamingSimulation.process_stream-362"><span class="linenos">362</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-363"><a href="#StreamingSimulation.process_stream-363"><span class="linenos">363</span></a>
+</span><span id="StreamingSimulation.process_stream-364"><a href="#StreamingSimulation.process_stream-364"><span class="linenos">364</span></a>                        <span class="n">anomaly_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-365"><a href="#StreamingSimulation.process_stream-365"><span class="linenos">365</span></a>                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected </span><span class="si">{</span><span class="n">anomaly_count</span><span class="si">}</span><span class="s2"> anomalies in the current chunk.&quot;</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-366"><a href="#StreamingSimulation.process_stream-366"><span class="linenos">366</span></a>
+</span><span id="StreamingSimulation.process_stream-367"><a href="#StreamingSimulation.process_stream-367"><span class="linenos">367</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-368"><a href="#StreamingSimulation.process_stream-368"><span class="linenos">368</span></a>                        <span class="n">three_hours_ago</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-369"><a href="#StreamingSimulation.process_stream-369"><span class="linenos">369</span></a>                        <span class="n">filtered_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_data</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">three_hours_ago</span><span class="p">]</span>
+</span><span id="StreamingSimulation.process_stream-370"><a href="#StreamingSimulation.process_stream-370"><span class="linenos">370</span></a>
+</span><span id="StreamingSimulation.process_stream-371"><a href="#StreamingSimulation.process_stream-371"><span class="linenos">371</span></a>                        <span class="n">filtered_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">):]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filtered_data</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">historical_scores</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="StreamingSimulation.process_stream-372"><a href="#StreamingSimulation.process_stream-372"><span class="linenos">372</span></a>
+</span><span id="StreamingSimulation.process_stream-373"><a href="#StreamingSimulation.process_stream-373"><span class="linenos">373</span></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">plot_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">filtered_data</span><span class="p">,</span> <span class="n">filtered_scores</span><span class="p">))</span>
+</span><span id="StreamingSimulation.process_stream-374"><a href="#StreamingSimulation.process_stream-374"><span class="linenos">374</span></a>            <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-375"><a href="#StreamingSimulation.process_stream-375"><span class="linenos">375</span></a>                <span class="k">continue</span>
+</span><span id="StreamingSimulation.process_stream-376"><a href="#StreamingSimulation.process_stream-376"><span class="linenos">376</span></a>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="StreamingSimulation.process_stream-377"><a href="#StreamingSimulation.process_stream-377"><span class="linenos">377</span></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing stream: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Consume data from the queue and process it with the anomaly detector.</p>
+
+<p>This method continuously retrieves data chunks from a queue, processes them,
+and performs anomaly detection using a pre-trained detector. The results are
+then prepared for visualization and sent to a plotting queue.</p>
+
+<p>Workflow:</p>
+
+<ul>
+<li>Retrieve a chunk of data from the queue.</li>
+<li>Append the chunk to the historical data, maintaining a rolling window of the last 5000 records.</li>
+<li>Preprocess the data for anomaly detection.</li>
+<li>Train the anomaly detector if it is not already trained and sufficient data is available.</li>
+<li>Perform anomaly detection on the current chunk if the detector is trained.</li>
+<li>Update historical scores and count the number of anomalies detected in the current chunk.</li>
+<li>Filter historical data and scores to include only the last three hours of data.</li>
+<li>Send the filtered data and scores to the plotting queue for visualization.</li>
+</ul>
+
+<p>Exceptions:</p>
+
+<ul>
+<li>Handles <code>queue.Empty</code> exceptions when the queue is empty and continues processing.</li>
+<li>Catches and logs any other exceptions that occur during processing.</li>
+</ul>
+
+<p>Attributes:</p>
+
+<ul>
+<li>self.streaming_active (bool): Flag to control the streaming process.</li>
+<li>self.queue (queue.Queue): Queue from which data chunks are consumed.</li>
+<li>self.historical_data (pd.DataFrame): DataFrame storing historical data for processing.</li>
+<li>self.historical_scores (np.ndarray): Array storing historical anomaly scores.</li>
+<li>self.window_size (int): Size of the rolling window for preprocessing.</li>
+<li>self.detector (object): Anomaly detector instance with <code>fit</code> and <code>detect</code> methods.</li>
+<li>self.plot_queue (queue.Queue): Queue to send data and scores for visualization.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="StreamingSimulation.run" class="classattr">
+                                        <input id="StreamingSimulation.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="StreamingSimulation.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#StreamingSimulation.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="StreamingSimulation.run-379"><a href="#StreamingSimulation.run-379"><span class="linenos">379</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="StreamingSimulation.run-380"><a href="#StreamingSimulation.run-380"><span class="linenos">380</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.run-381"><a href="#StreamingSimulation.run-381"><span class="linenos">381</span></a><span class="sd">        Executes the streaming anomaly detection simulation.</span>
+</span><span id="StreamingSimulation.run-382"><a href="#StreamingSimulation.run-382"><span class="linenos">382</span></a><span class="sd">        This method starts two separate threads:</span>
+</span><span id="StreamingSimulation.run-383"><a href="#StreamingSimulation.run-383"><span class="linenos">383</span></a><span class="sd">        1. A streaming thread that simulates or handles incoming data.</span>
+</span><span id="StreamingSimulation.run-384"><a href="#StreamingSimulation.run-384"><span class="linenos">384</span></a><span class="sd">        2. A processing thread that processes the streamed data.</span>
+</span><span id="StreamingSimulation.run-385"><a href="#StreamingSimulation.run-385"><span class="linenos">385</span></a><span class="sd">        The simulation remains active until interrupted by a KeyboardInterrupt</span>
+</span><span id="StreamingSimulation.run-386"><a href="#StreamingSimulation.run-386"><span class="linenos">386</span></a><span class="sd">        (e.g., pressing Ctrl+C). Upon interruption, the simulation stops gracefully</span>
+</span><span id="StreamingSimulation.run-387"><a href="#StreamingSimulation.run-387"><span class="linenos">387</span></a><span class="sd">        by setting `self.streaming_active` to False and joining both threads.</span>
+</span><span id="StreamingSimulation.run-388"><a href="#StreamingSimulation.run-388"><span class="linenos">388</span></a><span class="sd">        Additionally, this method handles plotting from the main thread.</span>
+</span><span id="StreamingSimulation.run-389"><a href="#StreamingSimulation.run-389"><span class="linenos">389</span></a><span class="sd">        Raises:</span>
+</span><span id="StreamingSimulation.run-390"><a href="#StreamingSimulation.run-390"><span class="linenos">390</span></a><span class="sd">            KeyboardInterrupt: If the simulation is manually stopped by the user.</span>
+</span><span id="StreamingSimulation.run-391"><a href="#StreamingSimulation.run-391"><span class="linenos">391</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="StreamingSimulation.run-392"><a href="#StreamingSimulation.run-392"><span class="linenos">392</span></a>       
+</span><span id="StreamingSimulation.run-393"><a href="#StreamingSimulation.run-393"><span class="linenos">393</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="StreamingSimulation.run-394"><a href="#StreamingSimulation.run-394"><span class="linenos">394</span></a>
+</span><span id="StreamingSimulation.run-395"><a href="#StreamingSimulation.run-395"><span class="linenos">395</span></a>        <span class="n">stream_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_data</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="StreamingSimulation.run-396"><a href="#StreamingSimulation.run-396"><span class="linenos">396</span></a>        <span class="n">process_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">process_stream</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="StreamingSimulation.run-397"><a href="#StreamingSimulation.run-397"><span class="linenos">397</span></a>
+</span><span id="StreamingSimulation.run-398"><a href="#StreamingSimulation.run-398"><span class="linenos">398</span></a>        <span class="n">stream_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span id="StreamingSimulation.run-399"><a href="#StreamingSimulation.run-399"><span class="linenos">399</span></a>        <span class="n">process_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span id="StreamingSimulation.run-400"><a href="#StreamingSimulation.run-400"><span class="linenos">400</span></a>
+</span><span id="StreamingSimulation.run-401"><a href="#StreamingSimulation.run-401"><span class="linenos">401</span></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="StreamingSimulation.run-402"><a href="#StreamingSimulation.run-402"><span class="linenos">402</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_plot_from_main_thread</span><span class="p">()</span>
+</span><span id="StreamingSimulation.run-403"><a href="#StreamingSimulation.run-403"><span class="linenos">403</span></a>        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+</span><span id="StreamingSimulation.run-404"><a href="#StreamingSimulation.run-404"><span class="linenos">404</span></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stopping simulation...&quot;</span><span class="p">)</span>
+</span><span id="StreamingSimulation.run-405"><a href="#StreamingSimulation.run-405"><span class="linenos">405</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">streaming_active</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="StreamingSimulation.run-406"><a href="#StreamingSimulation.run-406"><span class="linenos">406</span></a>
+</span><span id="StreamingSimulation.run-407"><a href="#StreamingSimulation.run-407"><span class="linenos">407</span></a>        <span class="n">stream_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span><span id="StreamingSimulation.run-408"><a href="#StreamingSimulation.run-408"><span class="linenos">408</span></a>        <span class="n">process_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Executes the streaming anomaly detection simulation.
+This method starts two separate threads:</p>
+
+<ol>
+<li>A streaming thread that simulates or handles incoming data.</li>
+<li>A processing thread that processes the streamed data.
+The simulation remains active until interrupted by a KeyboardInterrupt
+(e.g., pressing Ctrl+C). Upon interruption, the simulation stops gracefully
+by setting <code>self.streaming_active</code> to False and joining both threads.
+Additionally, this method handles plotting from the main thread.
+Raises:
+KeyboardInterrupt: If the simulation is manually stopped by the user.</li>
+</ol>
+</div>
+
+
+                            </div>
+                </section>
     </main>
 <script>
     function escapeHTML(html) {
