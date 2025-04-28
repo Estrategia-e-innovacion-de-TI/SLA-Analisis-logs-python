@@ -1,6 +1,9 @@
 """
-Sentinel
-========================
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python/refs/heads/docs/docs/images/sentinel%20icon%20with%20text.png" alt="Sentinel Logo" width="250"/>
+</p>
+
+
 
 A simple yet powerful tool to analyze logs and extract meaningful insights.
 
