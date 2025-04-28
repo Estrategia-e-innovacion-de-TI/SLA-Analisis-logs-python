@@ -12,7 +12,35 @@ def extract_error_code(description):
     return match.group(1) if match else None
 
 class HDCParser(BaseLogParser):
+    """
+    HDCParser is a log parser class that extends the BaseLogParser to parse logs
+    from a specified file path and return the data as a pandas DataFrame.
+    """
     def parse(self) -> pd.DataFrame:
+        """
+            Reads the log file, processes each log line using a predefined pattern,
+            and extracts relevant information into a structured pandas DataFrame.
+
+            Returns:
+
+                pd.DataFrame: A DataFrame containing the parsed log data with the following columns:
+
+                    - timestamp: The timestamp of the log entry.
+
+                    - thread_id: The thread ID associated with the log entry.
+
+                    - log_source: The source of the log entry.
+
+                    - log_type: The type of the log entry.
+
+                    - message: The log message.
+                    
+                    - error_code: The extracted error code from the log message, if available.
+
+            Raises:
+            
+                Exception: If the file cannot be opened or read, an empty DataFrame is returned.
+        """
         try:
             with open(self.file_path, "r", encoding="utf-8") as file:
                 raw_log = file.read()
