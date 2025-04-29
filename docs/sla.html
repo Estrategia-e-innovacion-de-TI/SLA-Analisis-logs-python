@@ -23,7 +23,15 @@
 
             <h2>Contents</h2>
             <ul>
-  <li><a href="#simple-logs-analyzer-sla">Simple Logs Analyzer (SLA)</a></li>
+  <li><a href="#installation">Installation</a></li>
+  <li><a href="#modules">Modules</a></li>
+  <li><a href="#1-ingestion">1. ingestion</a></li>
+  <li><a href="#2-explorer">2. explorer</a></li>
+  <li><a href="#3-transformer">3. transformer</a></li>
+  <li><a href="#4-detectors">4. detectors</a></li>
+  <li><a href="#5-simulation">5. simulation</a></li>
+  <li><a href="#6-visualization">6. visualization</a></li>
+  <li><a href="#license">License</a></li>
 </ul>
 
 
@@ -55,24 +63,261 @@
                     <h1 class="modulename">
 sla    </h1>
 
-                        <div class="docstring"><h1 id="simple-logs-analyzer-sla">Simple Logs Analyzer (SLA)</h1>
+                        <div class="docstring"><p align="center">
+  <img src="https://raw.githubusercontent.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python/refs/heads/docs/docs/images/sentinel%20icon%20with%20text.png" alt="Sentinel Logo" width="250"/>
+</p>
 
-<p>A simple tool to analyze logs and extract meaningful insights.</p>
+<p>A simple yet powerful tool to analyze logs and extract meaningful insights.</p>
+
+<p>Sentinel is a Python library designed to facilitate the analysis of logs from systems,
+applications, and services. It enables users to extract, process, and analyze log data
+to detect anomalies, patterns, and trends that might indicate issues or interesting
+behaviors in their systems. One of its main objectives is to quickly identify if your
+data contains signals that could proactively indicate potential problems.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>To install Sentinel, simply run:</p>
+
+<div class="pdoc-code codehilite">
+<pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python.git
+<span class="nb">cd</span><span class="w"> </span>SLA-Analisis-logs-python
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</code></pre>
+</div>
+
+<h2 id="modules">Modules</h2>
+
+<h2 id="1-ingestion">1. ingestion</h2>
+
+<p>Handles the transformation of raw, unstructured log files into structured pandas DataFrames.</p>
+
+<p>It includes a base parser and specific parsers for:</p>
+
+<ul>
+<li>WAS (WebSphere Application Server)</li>
+<li>HSM (Hardware Security Module)</li>
+<li>HDC (High-Density Computing)</li>
+<li>IBMMQ (IBM Message Queue)</li>
+</ul>
+
+<p>Each parser adapts to the structure and format of its respective log type.<br />
+For unsupported log types, custom parsers can be built upon the base parser.</p>
+
+<hr />
+
+<h2 id="2-explorer">2. explorer</h2>
+
+<p>Provides tools for initial dataset analysis focused on anomaly detection and data validation.</p>
+
+<p>Functionalities include:</p>
+
+<ul>
+<li><p><strong>Anomaly Detection</strong>:<br />
+Identifies anomalies using the Interquartile Range (IQR) method.</p></li>
+<li><p><strong>Data Quality Tests</strong>:</p>
+
+<ul>
+<li>Ensures minimum data entries in columns.</li>
+<li>Verifies presence of a required <code>label</code> column.</li>
+<li>Checks anomaly percentages.</li>
+<li>Validates minimum non-null value percentages.</li>
+<li>Tests minimum variance thresholds.</li>
+</ul></li>
+<li><p><strong>Correlation Analysis</strong>:<br />
+Calculates point-biserial correlations between labels and features.</p></li>
+<li><p><strong>Model Evaluation</strong>:<br />
+Measures the recall score of a logistic regression model using each feature individually.</p></li>
+</ul>
+
+<p>These validations help determine dataset readiness for anomaly detection tasks.</p>
+
+<hr />
+
+<h2 id="3-transformer">3. transformer</h2>
+
+<p>Provides aggregation methods for structured dataframes, particularly useful for time-series and event-driven data.</p>
+
+<p>Available tools:</p>
+
+<ul>
+<li><strong>StringAggregator</strong>: Aggregates string values over a defined time window (e.g., 30 seconds).</li>
+<li><strong>RollingAggregator</strong>: Applies rolling window aggregations.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-detectors">4. detectors</h2>
+
+<p>Offers anomaly detection models tailored for time-series data.</p>
+
+<p>Available detectors:</p>
+
+<ul>
+<li><strong>AutoencoderDetector</strong>: Autoencoder-based anomaly detection.</li>
+<li><strong>IsolationForestDetector</strong>: Anomaly detection using the Isolation Forest algorithm.</li>
+<li><strong>RRCFDetector</strong>: Robust Random Cut Forest-based detection.</li>
+<li><strong>LNNDetector</strong>: Detection via a Learned Neural Network (LNN).</li>
+</ul>
+
+<p>Each model identifies anomalies in temporal datasets.</p>
+
+<hr />
+
+<h2 id="5-simulation">5. simulation</h2>
+
+<p>Initializes the simulation environment for SLA analysis logs and streaming anomaly detection.</p>
+
+<p>Main class:</p>
+
+<ul>
+<li><strong>StreamingSimulation</strong>: Simulates streaming-based anomaly detection scenarios.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-visualization">6. visualization</h2>
+
+<p>Provides visualization utilities for:</p>
+
+<ul>
+<li>Anomaly detection results</li>
+<li>SHAP (SHapley Additive exPlanations) analysis</li>
+</ul>
+
+<h2 id="license">License</h2>
+
+<p>This project is licensed under the terms of the MIT license.</p>
 </div>
 
                         <input id="mod-sla-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-sla-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">1</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a><span class="sd">Simple Logs Analyzer (SLA)</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="sd">========================</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos">4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a><span class="sd">A simple tool to analyze logs and extract meaningful insights.</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a>
-</span><span id="L-7"><a href="#L-7"><span class="linenos">7</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos">8</span></a>
-</span><span id="L-9"><a href="#L-9"><span class="linenos">9</span></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="sd">&lt;p align=&quot;center&quot;&gt;</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="sd">  &lt;img src=&quot;https://raw.githubusercontent.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python/refs/heads/docs/docs/images/sentinel%20icon%20with%20text.png&quot; alt=&quot;Sentinel Logo&quot; width=&quot;250&quot;/&gt;</span>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a><span class="sd">&lt;/p&gt;</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="sd">A simple yet powerful tool to analyze logs and extract meaningful insights.</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="sd">Sentinel is a Python library designed to facilitate the analysis of logs from systems,</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="sd">applications, and services. It enables users to extract, process, and analyze log data</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="sd">to detect anomalies, patterns, and trends that might indicate issues or interesting</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">behaviors in their systems. One of its main objectives is to quickly identify if your</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="sd">data contains signals that could proactively indicate potential problems.</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a><span class="sd">Installation</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="sd">----------</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a><span class="sd">To install Sentinel, simply run:</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a><span class="sd">```bash</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="sd">git clone https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python.git</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="sd">cd SLA-Analisis-logs-python</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a><span class="sd">pip install -e .</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="sd">```</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="sd">Modules</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a><span class="sd">----------</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">1. ingestion</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="sd">---------</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">Handles the transformation of raw, unstructured log files into structured pandas DataFrames.</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a><span class="sd">It includes a base parser and specific parsers for:</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a><span class="sd">- WAS (WebSphere Application Server)</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a><span class="sd">- HSM (Hardware Security Module)</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="sd">- HDC (High-Density Computing)</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="sd">- IBMMQ (IBM Message Queue)</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">Each parser adapts to the structure and format of its respective log type.  </span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">For unsupported log types, custom parsers can be built upon the base parser.</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a><span class="sd">---</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="sd">2. explorer</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="sd">--------</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="sd">Provides tools for initial dataset analysis focused on anomaly detection and data validation.</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="sd">Functionalities include:</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a><span class="sd">- **Anomaly Detection**:  </span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a><span class="sd">  Identifies anomalies using the Interquartile Range (IQR) method.</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="sd">- **Data Quality Tests**:</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="sd">  - Ensures minimum data entries in columns.</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="sd">  - Verifies presence of a required `label` column.</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a><span class="sd">  - Checks anomaly percentages.</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="sd">  - Validates minimum non-null value percentages.</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="sd">  - Tests minimum variance thresholds.</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">- **Correlation Analysis**:  </span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">  Calculates point-biserial correlations between labels and features.</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="sd">- **Model Evaluation**:  </span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="sd">  Measures the recall score of a logistic regression model using each feature individually.</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a><span class="sd">These validations help determine dataset readiness for anomaly detection tasks.</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="sd">---</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="sd">3. transformer</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="sd">-----------</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="sd">Provides aggregation methods for structured dataframes, particularly useful for time-series and event-driven data.</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a><span class="sd">Available tools:</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="sd">- **StringAggregator**: Aggregates string values over a defined time window (e.g., 30 seconds).</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a><span class="sd">- **RollingAggregator**: Applies rolling window aggregations.</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a><span class="sd">---</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a><span class="sd">4. detectors</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="sd">---------</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a><span class="sd">Offers anomaly detection models tailored for time-series data.</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a><span class="sd">Available detectors:</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a><span class="sd">- **AutoencoderDetector**: Autoencoder-based anomaly detection.</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">- **IsolationForestDetector**: Anomaly detection using the Isolation Forest algorithm.</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="sd">- **RRCFDetector**: Robust Random Cut Forest-based detection.</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">- **LNNDetector**: Detection via a Learned Neural Network (LNN).</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a><span class="sd">Each model identifies anomalies in temporal datasets.</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a><span class="sd">---</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="sd">5. simulation</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="sd">----------</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a><span class="sd">Initializes the simulation environment for SLA analysis logs and streaming anomaly detection.</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="sd">Main class:</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="sd">- **StreamingSimulation**: Simulates streaming-based anomaly detection scenarios.</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">---</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">6. visualization</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">-------------</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a><span class="sd">Provides visualization utilities for:</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a><span class="sd">- Anomaly detection results</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a><span class="sd">- SHAP (SHapley Additive exPlanations) analysis</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">License</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="sd">--------</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">This project is licensed under the terms of the MIT license.</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;0.0.1&quot;</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a><span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;ARQUITECTURA INNOVACIÓN TI&quot;</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;MIT&quot;</span>
 </span></pre></div>
 
 

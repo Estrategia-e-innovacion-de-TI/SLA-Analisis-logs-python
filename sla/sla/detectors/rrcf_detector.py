@@ -6,19 +6,40 @@ from sklearn.base import BaseEstimator
 
 
 class RRCFDetector(BaseEstimator):
-    """Robust Random Cut Forest anomaly detector.
 
-    Esta clase implementa la detección de anomalías utilizando el algoritmo
-    Robust Random Cut Forest para la detección de anomalías en streaming.
+    """    RRCFDetector: Robust Random Cut Forest anomaly detector.
 
-    Parameters
-    ----------
-    shingle_size : int, default=15
-        Tamaño de la ventana de shingling.
-    num_trees : int, default=100
-        Número de árboles en el bosque aleatorio.
-    tree_size : int, default=500
-        Tamaño máximo de cada árbol en el bosque.
+    This class implements anomaly detection using the Robust Random Cut Forest 
+    algorithm for streaming anomaly detection.
+
+    Args:
+
+        - shingle_size: Size of the shingling window.
+
+        - num_trees: Number of trees in the random forest.
+
+        - tree_size: Maximum size of each tree in the forest.
+
+    
+    Attributes:
+
+        - shingle_size : int
+            Size of the shingling window.
+
+        - num_trees : int
+            Number of trees in the random forest.
+
+        - tree_size : int
+            Maximum size of each tree in the forest.
+
+        - forest : list
+            List of RCTree objects representing the forest.
+
+        - index : None or int
+            Index used for tracking data points (if applicable).
+
+        - anomaly_scores : None or pd.Series
+            Series containing anomaly scores for the input data.
     """
 
     def __init__(self, shingle_size=15, num_trees=100, tree_size=500):
@@ -32,15 +53,15 @@ class RRCFDetector(BaseEstimator):
     def fit(self, X, y=None):
         """Fit the model to the input data.
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples,)
-            Input time series data.
+        Args
+        
+            X : array-like of shape (n_samples,)
+                Input time series data.
 
         Returns
-        -------
-        self : object
-            Returns self.
+        
+            self : object
+                Returns self.
         """
         n = len(X)
         self.anomaly_scores = pd.Series(0.0, index=np.arange(n))
@@ -61,15 +82,15 @@ class RRCFDetector(BaseEstimator):
     def predict(self, X):
         """Calculate anomaly scores for input data.
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples,)
-            Input time series data.
+        Args
+        
+            X : array-like of shape (n_samples,)
+                Input time series data.
 
         Returns
-        -------
-        scores : ndarray of shape (n_samples,)
-            Anomaly scores for each input sample.
+        
+            scores : ndarray of shape (n_samples,)
+                Anomaly scores for each input sample.
         """
         scores = np.zeros(len(X))
         
@@ -88,15 +109,15 @@ class RRCFDetector(BaseEstimator):
     def fit_predict(self, X, y=None):
         """Fit the model and calculate anomaly scores.
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples,)
-            Input time series data.
+        Args
+        
+            X : array-like of shape (n_samples,)
+                Input time series data.
 
         Returns
-        -------
-        anomaly_scores : Series of shape (n_samples,)
-            Anomaly scores for each input sample.
+        
+            anomaly_scores : Series of shape (n_samples,)
+                Anomaly scores for each input sample.
         """
         self.fit(X)
         self.anomaly_scores = pd.Series(self.predict(X), index=np.arange(len(X)))
@@ -105,15 +126,15 @@ class RRCFDetector(BaseEstimator):
     def get_anomalies(self, threshold):
         """Identify anomalies based on a threshold.
 
-        Parameters
-        ----------
-        threshold : float
-            Threshold value for anomaly detection.
+        Args
+        
+            threshold : float
+                Threshold value for anomaly detection.
 
         Returns
-        -------
-        anomalies : Series
-            Series containing anomaly scores above the threshold.
+        
+            anomalies : Series
+                Series containing anomaly scores above the threshold.
         """
         if self.anomaly_scores is None:
             raise ValueError("Model must be fit before getting anomalies.")
@@ -122,15 +143,15 @@ class RRCFDetector(BaseEstimator):
     def predict_proba(self, X):
         """Calculate normalized probability-like anomaly scores.
 
-        Parameters
-        ----------
-        X : array-like of shape (n_samples,)
-            Input time series data.
+        Args
+        
+            X : array-like of shape (n_samples,)
+                Input time series data.
 
         Returns
-        -------
-        proba : ndarray of shape (n_samples,)
-            Normalized anomaly scores.
+        
+            proba : ndarray of shape (n_samples,)
+                Normalized anomaly scores.
         """
         scores = self.predict(X)
         max_score = np.max(scores)
