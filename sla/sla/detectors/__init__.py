@@ -19,10 +19,11 @@ from .autoencoder import AutoencoderDetector
 from .isolation_forest import IsolationForestDetector
 from .rrcf_detector import RRCFDetector
 from .lnn import LNNDetector
+from .custom_detector import BaseCustomDetector
 
 
 
 
 
 
-__all__ = ['AutoencoderDetector', 'IsolationForestDetector', 'RRCFDetector', 'LNNDetector']
+__all__ = ['AutoencoderDetector', 'IsolationForestDetector', 'RRCFDetector', 'LNNDetector', 'BaseCustomDetector']

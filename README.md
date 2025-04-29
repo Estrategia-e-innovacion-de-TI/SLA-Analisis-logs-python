@@ -19,7 +19,6 @@ Para instalar Sentinel, ejecuta:
 git clone https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python.git
 cd SLA-Analisis-logs-python
 pip install -e .
--r requirements.txt
 ```
 
 ## Modulos
