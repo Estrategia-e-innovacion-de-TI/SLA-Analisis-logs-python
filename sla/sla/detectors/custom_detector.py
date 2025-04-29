@@ -28,10 +28,11 @@ class BaseCustomDetector(ABC):
         Fit the model to training data.
 
         Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Training data.
-        y : Ignored (included for compatibility).
+            
+            - X : array-like of shape (n_samples, n_features)
+                Training data.
+
+            - y : Ignored (included for compatibility).
         """
         pass
 
@@ -41,14 +42,14 @@ class BaseCustomDetector(ABC):
         Predict binary labels (1 for anomaly, 0 for normal).
 
         Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            Data to predict on.
+        
+            X : array-like of shape (n_samples, n_features)
+                Data to predict on.
 
         Returns
-        -------
-        array-like of shape (n_samples,)
-            Binary predictions: 1 for anomaly, 0 for normal.
+        
+            array-like of shape (n_samples,)
+                Binary predictions: 1 for anomaly, 0 for normal.
         """
         pass
 
@@ -57,13 +58,13 @@ class BaseCustomDetector(ABC):
         Compute anomaly scores for input data.
 
         Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
+        
+            X : array-like of shape (n_samples, n_features)
 
         Returns
-        -------
-        array-like of shape (n_samples,)
-            Anomaly scores (higher = more anomalous).
+        
+            array-like of shape (n_samples,)
+                Anomaly scores (higher = more anomalous).
         """
         # Optional: Override for detectors that support scoring
         return np.zeros(len(X))
