@@ -4,20 +4,19 @@ from typing import List, Dict, Union, Optional, Callable
 from datetime import timedelta
 
 class StringAggregator:
-    """
-    Clase para realizar agregaciones flexibles en DataFrames con soporte para ventanas temporales.
 
-    Permite definir métricas personalizadas para cualquier tipo de columna.
+    """
+    A class to perform flexible aggregations on DataFrames with support for time windows.
+
+    Attributes:
+
+        df (pd.DataFrame): A copy of the input DataFrame with the timestamp column converted to datetime.
+
+        timestamp_column (str): The name of the timestamp column.
     """
 
     def __init__(self, dataframe: pd.DataFrame, timestamp_column: str):
-        """
-        Inicializa el agregador con un DataFrame y columna de timestamp.
 
-        Args:
-            dataframe (pd.DataFrame): DataFrame de entrada
-            timestamp_column (str): Nombre de la columna de timestamp
-        """
         if not isinstance(dataframe, pd.DataFrame):
             raise TypeError("El input debe ser un DataFrame de pandas")
         
@@ -36,16 +35,54 @@ class StringAggregator:
         category_count_columns: Optional[Dict[str, List[str]]] = None
     ) -> pd.DataFrame:
         """
-        Realiza agregaciones flexibles por ventana de tiempo.
+             Aggregates data over a specified time window, applying various metrics to the columns of a DataFrame.
 
-        Args:
-            time_window (str, optional): Ventana temporal. Defaults to '5min'.
-            column_metrics (Dict[str, List], optional): Métricas para columnas específicas.
-            custom_metrics (Dict[str, Callable], optional): Métricas personalizadas.
-            category_count_columns (Dict[str, List[str]], optional): Columnas para conteo por categoría.
+        Parameters:
+
+            - time_window : str, optional
+
+                The time window for aggregation, specified as a pandas offset alias (e.g., '5min', '1H').
+                Default is '5min'.
+
+            - column_metrics : Optional[Dict[str, List[Union[str, Callable]]]], optional
+
+                A dictionary where keys are column names and values are lists of metrics to apply.
+                Metrics can be strings ('count', 'nunique', 'mode') or custom callable functions.
+                Default is None, which applies 'count' and 'nunique' to all columns except the timestamp column.
+
+            - custom_metrics : Optional[Dict[str, Callable]], optional
+
+                A dictionary of custom metrics to apply globally. Keys are metric names, and values are callable functions.
+                Default is None.
+
+            - category_count_columns : Optional[Dict[str, List[str]]], optional
+
+                A dictionary where keys are column names and values are lists of specific categories to count.
+                Default is None.
 
         Returns:
-            pd.DataFrame: DataFrame con agregaciones
+   
+            - pd.DataFrame:
+                A DataFrame containing the aggregated results, with metrics applied to the specified columns
+                and additional time-based metrics.
+
+        Raises:
+
+            ValueError:
+                If a specified column in `column_metrics` or `category_count_columns` does not exist in the DataFrame.
+
+        Notes:
+
+            - The method groups the data by the specified time window using the timestamp column.
+
+            - Default metrics ('count', 'nunique') are applied to all columns if `column_metrics` is not provided.
+
+            - Custom metrics can be applied to specific columns or globally.
+
+            - Time-based metrics include average, minimum, and maximum time between events in seconds.
+            
+            - Category-specific counts can be calculated for specified columns and categories.
+
         """
         # Agrupar por ventana de tiempo
         grouped = self.df.groupby(pd.Grouper(key=self.timestamp_column, freq=time_window))
@@ -128,7 +165,6 @@ class StringAggregator:
 
 # Ejemplo de uso
 def example_usage():
-    """Ejemplo de cómo usar la clase FlexibleAggregator"""
     # Crear un DataFrame de ejemplo con más variedad de datos
     np.random.seed(42)  # Para reproducibilidad
     
