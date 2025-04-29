@@ -26,16 +26,17 @@ class LNNEncoder(nn.Module):
     
     This class implements an encoder using Liquid Neural Networks
     for capturing complex temporal dynamics in time series data.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
+
     """
     def __init__(self, n_features, seq_len, latent_dim=20):
-        """
-        Initialize the LNN encoder model.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-        """
+
         super(LNNEncoder, self).__init__()
         
         self.seq_len, self.n_features = seq_len, n_features
@@ -54,9 +55,11 @@ class LNNEncoder(nn.Module):
         Forward pass of the LNN encoder model.
         
         Args:
+
             x (torch.Tensor): Input features
             
         Returns:
+
             torch.Tensor: Latent space representation
         """
         x = x.reshape((1, self.seq_len, self.n_features))
@@ -70,16 +73,16 @@ class Decoder(nn.Module):
     
     This class implements a decoder with configurable architecture
     for decoding latent space representation to output features.
+
+    Args:
+            - n_features (int): Dimension of output features
+
+            - seq_len (int): Length of output sequence
+
+            - input_dim (int): Dimension of the latent space representation
     """
     def __init__(self, n_features, seq_len, input_dim=20):
-        """
-        Initialize the decoder model.
-        
-        Args:
-            n_features (int): Dimension of output features
-            seq_len (int): Length of output sequence
-            input_dim (int): Dimension of the latent space representation
-        """
+
         super(Decoder, self).__init__()
 
         self.seq_len, self.input_dim = seq_len, input_dim
@@ -98,9 +101,11 @@ class Decoder(nn.Module):
         Forward pass of the decoder model.
         
         Args:
+
             x (torch.Tensor): Latent space representation
         
         Returns:
+
             torch.Tensor: Output features
         """
         x = x.repeat(self.seq_len, self.n_features)
@@ -119,16 +124,16 @@ class LNNAutoencoder(nn.Module):
     This class implements an autoencoder using Liquid Neural Networks
     for the encoder, providing improved capability for handling complex 
     temporal dynamics in time series data.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
     """
     def __init__(self, n_features, seq_len, latent_dim=20):
-        """
-        Initialize the LNN autoencoder model.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-        """        
+      
         super(LNNAutoencoder, self).__init__()
         
         self.encoder = LNNEncoder(n_features, seq_len, latent_dim)
@@ -139,9 +144,11 @@ class LNNAutoencoder(nn.Module):
         Forward pass of the LNN autoencoder model.
         
         Args:
+
             x (torch.Tensor): Input features
         
         Returns:
+
             torch.Tensor: Decoded features
         """
         encoded = self.encoder(x)
@@ -157,21 +164,24 @@ class LNNDetector:
     This class implements an anomaly detector using a Liquid Neural Network-based
     autoencoder for detecting anomalies in time series data, offering improved 
     capability for handling complex temporal dynamics.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
+
+            - learning_rate (float): Learning rate for training the model
+
+            - epochs (int): Number of epochs for training the model
+
+            - threshold_multiplier (float): Anomaly threshold multiplier
     """
     def __init__(self, n_features, seq_len, latent_dim=8, 
                  learning_rate=0.001, epochs=20, 
                  threshold_multiplier=3.0):
-        """
-        Initialize the LNN-based anomaly detector.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-            learning_rate (float): Learning rate for training the model
-            epochs (int): Number of epochs for training the model
-            threshold_multiplier (float): Anomaly threshold multiplier
-        """
+
         self.n_features = n_features
         self.seq_len = seq_len
         self.latent_dim = latent_dim
@@ -192,11 +202,14 @@ class LNNDetector:
         Fit the LNN-based anomaly detector to the input data.
         
         Args:
-            X (np.ndarray): Input data for training the model
-            X_test (np.ndarray, optional): Test data for validation
+
+            - X (np.ndarray): Input data for training the model
+
+            - X_test (np.ndarray, optional): Test data for validation
             verbose (bool): Whether to print training progress
         
         Returns:
+
             dict: Training history
         """
         # Use input data directly without scaling
@@ -272,9 +285,11 @@ class LNNDetector:
         Calculate the anomaly threshold based on reconstruction errors.
         
         Args:
+
             X_scaled (torch.Tensor): Scaled input data
             
         Returns:
+
             float: Anomaly threshold
         """
         self.model.eval()
@@ -300,9 +315,11 @@ class LNNDetector:
         Predict anomalies in the input data.
         
         Args:
+
             X (np.ndarray): Input data for anomaly detection
             
         Returns:
+
             np.ndarray: Binary array where 1 indicates anomaly, 0 indicates normal
         """
         X_scaled = self.scaler.transform(X)
@@ -328,9 +345,11 @@ class LNNDetector:
         Calculate anomaly scores for the input data.
         
         Args:
+
             X (np.ndarray): Input data for anomaly detection
         
         Returns:
+
             np.ndarray: Anomaly scores (reconstruction errors)
         """
         X_scaled = self.scaler.transform(X)
@@ -356,6 +375,7 @@ class LNNDetector:
         Save the model to disk.
         
         Args:
+
             path (str): File path to save the model
         """
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -371,6 +391,7 @@ class LNNDetector:
         Load the model from disk.
         
         Args:
+        
             path (str): File path to load the model
         """
         checkpoint = torch.load(path)

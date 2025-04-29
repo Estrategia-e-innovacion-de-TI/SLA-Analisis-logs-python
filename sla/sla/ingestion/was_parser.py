@@ -3,7 +3,61 @@ import pandas as pd
 from .base_parser import BaseLogParser
 
 class WASParser(BaseLogParser):
+    """
+    WASParser is a log parser class that extends the BaseLogParser to process and extract structured data 
+    from WebSphere Application Server (WAS) logs.        
+    """
     def parse(self) -> pd.DataFrame:
+        """
+        Parses the WAS log file specified by `self.file_path` and extracts relevant information 
+            into a pandas DataFrame. The method uses regular expressions to extract fields such as 
+            timestamp, log level, service name, transaction ID, account details, transaction amount, 
+            response code, and other metadata.
+
+        Returns:
+
+                pd.DataFrame: A DataFrame containing the parsed log data. If the log file cannot be 
+                read or is empty, an empty DataFrame is returned.
+
+        Attributes Extracted:
+
+            - timestamp: The timestamp of the log entry.
+
+            - log_level: The severity level of the log (e.g., INFO, ERROR).
+
+            - service: The name of the service or component generating the log.
+
+            - transaction_id: The unique identifier for the transaction.
+
+            - account_from: The account ID of the sender.
+
+            - account_to: The account ID of the receiver.
+
+            - amount: The transaction amount.
+
+            - response_code: The response code from the transaction.
+
+            - trama_rq: The request payload (TramaRQ) sent to the iSeries system.
+
+            - trama_uuid: The UUID associated with the TramaRQ.
+
+            - trama_rs: The response payload (TramaRS) received from the iSeries system.
+
+            - process_transaction: The ID of the transaction being processed.
+
+            - connection_group: The connection group associated with the transaction.
+
+        Raises:
+
+            - Exception: If the log file cannot be opened or read, an empty DataFrame is returned instead 
+            of raising an exception.
+
+        Usage:
+
+            parser = WASParser(file_path="path/to/log/file.log")
+            
+            parsed_data = parser.parse()
+        """
         try:
             with open(self.file_path, "r", encoding="utf-8", errors="replace") as file:
                 raw_log = file.read()

@@ -4,16 +4,21 @@ import plotly.graph_objects as go
 import shap
 
 class AnomalyVisualizer:
-    def __init__(self, anomaly_df, incidents_df=None, score_col='scores', anomaly_col='anomaly'):
-        """
-        Initializes the AnomalyVisualizer.
+    """
+        AnomalyVisualizer.
 
         Parameters:
-        - anomaly_df (DataFrame): DataFrame containing anomaly data.
-        - incidents_df (DataFrame): DataFrame containing incident data (optional).
-        - score_col (str): Column name for anomaly scores (default: 'scores').
-        - anomaly_col (str): Column name for anomaly labels (default: 'anomaly').
+
+            - anomaly_df (DataFrame): DataFrame containing anomaly data.
+
+            - incidents_df (DataFrame): DataFrame containing incident data (optional).
+
+            - score_col (str): Column name for anomaly scores (default: 'scores').
+
+            - anomaly_col (str): Column name for anomaly labels (default: 'anomaly').
         """
+    def __init__(self, anomaly_df, incidents_df=None, score_col='scores', anomaly_col='anomaly'):
+
         self.anomaly_df = anomaly_df
         self.incidents_df = incidents_df
         self.score_col = score_col
@@ -24,14 +29,21 @@ class AnomalyVisualizer:
         """
         Plots a static graph using matplotlib.
 
-        Parameters:
-        - zoom (bool): Whether to zoom into a specific date range.
-        - zoom_date (list): List of two dates [start_date, end_date] for zooming.
-        - colors (dict): Custom colors for 'normal', 'anomaly', and 'incident'.
-        - title (str): Title of the plot.
-        - xlabel (str): Label for the x-axis.
-        - ylabel (str): Label for the y-axis.
-        - legend_labels (list): Custom labels for the legend.
+            Parameters:
+
+            - zoom (bool): Whether to zoom into a specific date range.
+
+            - zoom_date (list): List of two dates [start_date, end_date] for zooming.
+
+            - colors (dict): Custom colors for 'normal', 'anomaly', and 'incident'.
+
+            - title (str): Title of the plot.
+
+            - xlabel (str): Label for the x-axis.
+
+            - ylabel (str): Label for the y-axis.
+
+            - legend_labels (list): Custom labels for the legend.
         """
         if colors is None:
             colors = {'normal': 'green', 'anomaly': 'red', 'incident': 'blue'}
@@ -66,10 +78,14 @@ class AnomalyVisualizer:
         Plots a dynamic graph using Plotly.
 
         Parameters:
-        - colors (dict): Custom colors for 'normal', 'anomaly', and 'incident'.
-        - title (str): Title of the plot.
-        - xaxis_title (str): Label for the x-axis.
-        - yaxis_title (str): Label for the y-axis.
+
+            - colors (dict): Custom colors for 'normal', 'anomaly', and 'incident'.
+
+            - title (str): Title of the plot.
+
+            - xaxis_title (str): Label for the x-axis.
+
+            - yaxis_title (str): Label for the y-axis.
         """
         if colors is None:
             colors = {'normal': 'blue', 'anomaly': 'red', 'incident': 'orange'}
@@ -111,12 +127,12 @@ class AnomalyVisualizer:
 
 class SHAPVisualizer:
     """
-    A visualizer for SHAP values to explain the predictions of the IsolationForestDetector.
+    A visualizer for SHAP values to explain the predictions of the detector.
 
     Parameters
-    ----------
-    model : IsolationForestDetector
-        The trained IsolationForestDetector model.
+    
+        model : 
+            The trained detector model. Currently only supports IsolationForestDetector
     """
     def __init__(self, model):
         self.model = model
@@ -127,11 +143,12 @@ class SHAPVisualizer:
         Plots a SHAP force plot for a specific anomaly.
 
         Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            The input samples.
-        anomaly_index : int
-            The index of the anomaly in the dataset X to visualize.
+        
+            - X : array-like of shape (n_samples, n_features)
+                The input samples.
+
+            - anomaly_index : int
+                The index of the anomaly in the dataset X to visualize.
         """
         shap_values = self.explainer.shap_values(X)
         shap.force_plot(
@@ -148,9 +165,9 @@ class SHAPVisualizer:
         Plots a SHAP summary plot for the dataset.
 
         Parameters
-        ----------
-        X : array-like of shape (n_samples, n_features)
-            The input samples.
+        
+            X : array-like of shape (n_samples, n_features)
+                The input samples.
         """
         shap_values = self.explainer.shap_values(X)
         shap.summary_plot(shap_values, X)

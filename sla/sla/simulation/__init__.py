@@ -1,4 +1,4 @@
-from .streaming_anomaly_detection import StreamingSimulation
+from .streaming_anomaly_detection import StreamingSimulation, StreamingDataManager
 
 """
 This module initializes the simulation package for SLA analysis logs.
@@ -14,4 +14,5 @@ Attributes:
 """
 
 
-__all__ = ['StreamingSimulation']
+__all__ = ['StreamingSimulation', 'StreamingDataManager']
+

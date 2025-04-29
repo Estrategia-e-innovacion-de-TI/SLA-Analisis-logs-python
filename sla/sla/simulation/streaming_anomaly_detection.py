@@ -14,22 +14,21 @@ class StreamingDataManager:
     """
     A class to manage streaming of data in chunks from a pandas DataFrame.
     Attributes:
-        data (pd.DataFrame): The DataFrame containing the data to be streamed.
-        chunk_size (int): The number of rows in each chunk. Default is 100.
-        stream_interval (int): The time interval (in seconds) between streaming chunks. Default is 1.
-        data_queue (queue.Queue): A queue to hold the streamed data chunks.
-        current_index (int): The current index in the DataFrame for streaming.
-        streaming_active (bool): A flag indicating whether streaming is active.
-        thread (threading.Thread): The thread responsible for streaming data.
-    Methods:
-        start():
-            Starts the streaming process in a separate thread.
-        _stream_data():
-            Internal method to stream data chunks and add them to the queue.
-        get_next_chunk():
-            Retrieves the next chunk of data from the queue. Returns None if no data is available.
-        stop():
-            Stops the streaming process and waits for the thread to finish.
+
+        - data (pd.DataFrame): The DataFrame containing the data to be streamed.
+
+        - chunk_size (int): The number of rows in each chunk. Default is 100.
+
+        - stream_interval (int): The time interval (in seconds) between streaming chunks. Default is 1.
+
+        - data_queue (queue.Queue): A queue to hold the streamed data chunks.
+
+        - current_index (int): The current index in the DataFrame for streaming.
+
+        - streaming_active (bool): A flag indicating whether streaming is active.
+
+        - thread (threading.Thread): The thread responsible for streaming data.
+
     """
     def __init__(self, data: pd.DataFrame, chunk_size=100, stream_interval=1):
         self.data = data
@@ -41,11 +40,53 @@ class StreamingDataManager:
         self.thread = None
     
     def start(self):
+        """
+        Starts the streaming process in a separate thread.
+
+        This method sets the `streaming_active` flag to True and initializes
+        a daemon thread to execute the `_stream_data` method. The thread is
+        started immediately after creation.
+
+        Note:
+
+            The thread runs as a daemon, meaning it will not block the program
+            from exiting if the main thread finishes execution.
+        """
         self.streaming_active = True
         self.thread = threading.Thread(target=self._stream_data, daemon=True)
         self.thread.start()
     
     def _stream_data(self):
+        """
+        Streams data in chunks from the provided dataset.
+
+        This method continuously streams chunks of data from the `data` attribute 
+        into a queue (`data_queue`) while `streaming_active` is True and there is 
+        remaining data to stream. The size of each chunk is determined by 
+        `chunk_size`, and the interval between streaming each chunk is controlled 
+        by `stream_interval`.
+
+        Attributes:
+
+            - streaming_active (bool): A flag indicating whether streaming is active.
+
+            - current_index (int): The current position in the dataset from which 
+                data is being streamed.
+
+            - data (pandas.DataFrame): The dataset to be streamed.
+
+            - chunk_size (int): The number of rows to include in each streamed chunk.
+
+            - data_queue (queue.Queue): The queue where the streamed data chunks are 
+                placed.
+
+            - stream_interval (float): The time interval (in seconds) between 
+                streaming each chunk.
+
+        Yields:
+
+            None
+        """
         while self.streaming_active and self.current_index < len(self.data):
             chunk = self.data.iloc[self.current_index:self.current_index + self.chunk_size]
             self.data_queue.put(chunk)
@@ -53,12 +94,32 @@ class StreamingDataManager:
             time.sleep(self.stream_interval)
     
     def get_next_chunk(self):
+        """
+        Retrieves the next chunk of data from the data queue.
+        This method attempts to fetch the next item from the `data_queue` within
+        the specified `stream_interval`. If the queue is empty and the timeout
+        is reached, it returns `None`.
+
+        Returns:
+
+            Any: The next chunk of data from the queue if available, or `None` 
+            if the queue is empty and the timeout is reached.
+
+        Raises:
+
+            queue.Empty: If the queue is empty and no timeout is specified.
+        """
+
         try:
             return self.data_queue.get(timeout=self.stream_interval)
         except queue.Empty:
             return None
     
     def stop(self):
+        """
+        Stops the streaming process by setting the `streaming_active` flag to False.
+        If a thread is running, it waits for the thread to complete using `join()`.
+        """
         self.streaming_active = False
         if self.thread:
             self.thread.join()
@@ -71,16 +132,10 @@ class AnomalyDetector:
         self.trained = False  # Track whether the model is trained
 
     def fit(self, data: np.ndarray):
-        """
-        Fit the IsolationForest model with the provided data.
-        """
         self.model.fit(data)
         self.trained = True  # Mark the model as trained
 
     def detect(self, data: np.ndarray):
-        """
-        Detect anomalies in the provided data.
-        """
        
         # Perform predictions and calculate anomaly scores
         predictions = self.model.predict(data)
@@ -125,54 +180,39 @@ class AnomalyDetector:
 
 class StreamingSimulation:
     """
-    Module: streaming_anomaly_detection
-
-    This module contains the `StreamingSimulation` class, which simulates real-time data streaming, processes the data for anomaly detection, and visualizes the results. It integrates a streaming data manager, an anomaly detector, and event-based visualization.
-
-    Classes:
-        - StreamingSimulation: Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.
-
-    Class StreamingSimulation:
         Simulates real-time data streaming, processes data for anomaly detection, and visualizes results.
 
         Attributes:
-            window_size (int): The size of the sliding window for anomaly detection.
-            threshold (float): The static threshold for anomaly detection.
-            dynamic_threshold (bool): Whether to use a dynamic threshold based on historical scores.
-            percentile (int): The percentile used for calculating the dynamic threshold.
-            manager (StreamingDataManager): Manages the streaming of data chunks.
-            detector (AnomalyDetector): Detects anomalies in the data.
-            historical_data (pd.DataFrame): Stores historical data for processing.
-            historical_scores (list): Stores historical anomaly scores.
-            data_source (pd.DataFrame): The source data for streaming.
-            chunk_size (int): The size of each data chunk for streaming.
-            stream_interval (int): The interval (in seconds) between streaming chunks.
-            queue (queue.Queue): Queue for storing data chunks to be processed.
-            plot_queue (queue.Queue): Queue for storing data to be plotted.
-            streaming_active (bool): Indicates whether the streaming simulation is active.
-            events (pd.DataFrame): DataFrame containing event start and end times, colors, and labels.
 
-        Methods:
-            __init__(data: pd.DataFrame, chunk_size=100, stream_interval=1, window_size=120, threshold=0.15, dynamic_threshold=False, percentile=95, events=None):
-                Initializes the StreamingSimulation instance with the given parameters.
+            - window_size (int): The size of the sliding window for anomaly detection.
 
-            preprocess(chunk: pd.DataFrame) -> np.ndarray:
-                Preprocesses a data chunk by selecting numeric columns and filling missing values.
+            - threshold (float): The static threshold for anomaly detection.
 
-            _calculate_dynamic_threshold() -> float:
-                Calculates the dynamic threshold based on the specified percentile of historical scores.
+            - dynamic_threshold (bool): Whether to use a dynamic threshold based on historical scores.
 
-            _stream_data():
-                Simulates real-time data streaming by adding data chunks to the queue.
+            - percentile (int): The percentile used for calculating the dynamic threshold.
 
-            _plot_from_main_thread():
-                Continuously plots data and anomaly scores from the main thread, including event visualization.
+            - manager (StreamingDataManager): Manages the streaming of data chunks.
 
-            process_stream():
-                Consumes data from the queue, processes it with the anomaly detector, and updates historical data and scores.
+            - detector (AnomalyDetector): Detects anomalies in the data.
 
-            run():
-                Starts the streaming, processing, and plotting threads. Handles graceful shutdown on interruption.
+            - historical_data (pd.DataFrame): Stores historical data for processing.
+
+            - historical_scores (list): Stores historical anomaly scores.
+
+            - data_source (pd.DataFrame): The source data for streaming.
+
+            - chunk_size (int): The size of each data chunk for streaming.
+
+            - stream_interval (int): The interval (in seconds) between streaming chunks.
+
+            - queue (queue.Queue): Queue for storing data chunks to be processed.
+
+            - plot_queue (queue.Queue): Queue for storing data to be plotted.
+
+            - streaming_active (bool): Indicates whether the streaming simulation is active.
+
+            - events (pd.DataFrame): DataFrame containing event start and end times, colors, and labels.
     """
     def __init__(self, data: pd.DataFrame, chunk_size=100, stream_interval=1, window_size=120, threshold=0.15, dynamic_threshold=False, percentile=95, events=None):
         self.window_size = window_size
@@ -196,9 +236,11 @@ class StreamingSimulation:
         Preprocesses a chunk of data by selecting numeric columns and filling NaN values with 0.
 
         Args:
-            chunk (pd.DataFrame): The input DataFrame containing the data to preprocess.
+
+            - chunk (pd.DataFrame): The input DataFrame containing the data to preprocess.
 
         Returns:
+
             np.ndarray: A NumPy array containing the preprocessed numeric data.
         """
         numeric_data = chunk.select_dtypes(include=[np.number]).fillna(0)
@@ -213,6 +255,7 @@ class StreamingSimulation:
         it falls back to a predefined static threshold.
 
         Returns:
+
             float: The calculated dynamic threshold based on the percentile of
             historical scores, or the static threshold if no scores are available.
         """
@@ -227,17 +270,26 @@ class StreamingSimulation:
         streams each chunk into a queue for further processing. The streaming process 
         can be controlled using the `streaming_active` flag, and a delay between 
         chunks is introduced using `stream_interval`.
+
         Yields:
+
             None: This method does not return any value but streams data chunks 
             into the queue.
+
         Attributes:
-            data_source (pd.DataFrame): The source of data to be streamed.
-            chunk_size (int): The size of each data chunk to be streamed.
-            queue (queue.Queue): The queue where data chunks are placed.
-            stream_interval (float): The time interval (in seconds) between streaming 
+
+            - data_source (pd.DataFrame): The source of data to be streamed.
+
+            - chunk_size (int): The size of each data chunk to be streamed.
+
+            - queue (queue.Queue): The queue where data chunks are placed.
+
+            - stream_interval (float): The time interval (in seconds) between streaming 
                 consecutive chunks.
-            streaming_active (bool): A flag to control the streaming process. If set 
+
+            - streaming_active (bool): A flag to control the streaming process. If set 
                 to False, the streaming stops.
+
         """
        
         for i in range(0, len(self.data_source), self.chunk_size):
@@ -253,22 +305,36 @@ class StreamingSimulation:
         This method is designed to run in a loop, updating the plot with data from a queue until
         the streaming process is deactivated and the queue is empty. It visualizes anomaly scores,
         thresholds, and events on a time series plot.
+
         Key Features:
-        - Displays anomaly scores as a line plot.
-        - Highlights anomalies exceeding the threshold with red scatter points.
-        - Dynamically calculates the threshold if enabled, otherwise uses a static threshold.
-        - Visualizes events as vertical lines and shaded regions with customizable labels and colors.
+
+            - Uses Matplotlib to create a real-time plot of anomaly scores.
+
+            - Displays anomaly scores as a line plot.
+
+            - Highlights anomalies exceeding the threshold with red scatter points.
+
+            - Dynamically calculates the threshold if enabled, otherwise uses a static threshold.
+
+            - Visualizes events as vertical lines and shaded regions with customizable labels and colors.
+
         Interactive Mode:
-        - Uses Matplotlib's interactive mode (`plt.ion()`) to update the plot in real-time.
-        - Ensures the plot is cleared and updated with new data during each iteration.
+
+                - Uses Matplotlib's interactive mode (`plt.ion()`) to update the plot in real-time.
+
+                - Ensures the plot is cleared and updated with new data during each iteration.
+
         Cleanup:
-        - Disables interactive mode (`plt.ioff()`) and closes all figures to free memory after
-          the loop ends.
+                - Disables interactive mode (`plt.ioff()`) and closes all figures to free memory after
+                the loop ends.
+
         Raises:
             queue.Empty: If the plot queue is empty and no data is available within the timeout.
+
         Notes:
             - This method assumes `self.plot_queue` is a thread-safe queue containing tuples of
               filtered data and anomaly scores.
+
             - The `self.events` attribute should be a DataFrame with columns 'start', 'end',
               'color', and 'label' to define event visualization.
         """
@@ -323,27 +389,44 @@ class StreamingSimulation:
         then prepared for visualization and sent to a plotting queue.
 
         Workflow:
-        - Retrieve a chunk of data from the queue.
-        - Append the chunk to the historical data, maintaining a rolling window of the last 5000 records.
-        - Preprocess the data for anomaly detection.
-        - Train the anomaly detector if it is not already trained and sufficient data is available.
-        - Perform anomaly detection on the current chunk if the detector is trained.
-        - Update historical scores and count the number of anomalies detected in the current chunk.
-        - Filter historical data and scores to include only the last three hours of data.
-        - Send the filtered data and scores to the plotting queue for visualization.
+
+            1- Retrieve a chunk of data from the queue.
+
+            2- Append the chunk to the historical data, maintaining a rolling window of the last 5000 records.
+
+            3- Preprocess the data for anomaly detection.
+
+            4- Train the anomaly detector if it is not already trained and sufficient data is available.
+
+            5- Perform anomaly detection on the current chunk if the detector is trained.
+
+            6- Update historical scores and count the number of anomalies detected in the current chunk.
+
+            7- Filter historical data and scores to include only the last three hours of data.
+
+            8- Send the filtered data and scores to the plotting queue for visualization.
 
         Exceptions:
-        - Handles `queue.Empty` exceptions when the queue is empty and continues processing.
-        - Catches and logs any other exceptions that occur during processing.
+
+            - Handles `queue.Empty` exceptions when the queue is empty and continues processing.
+
+            - Catches and logs any other exceptions that occur during processing.
 
         Attributes:
-        - self.streaming_active (bool): Flag to control the streaming process.
-        - self.queue (queue.Queue): Queue from which data chunks are consumed.
-        - self.historical_data (pd.DataFrame): DataFrame storing historical data for processing.
-        - self.historical_scores (np.ndarray): Array storing historical anomaly scores.
-        - self.window_size (int): Size of the rolling window for preprocessing.
-        - self.detector (object): Anomaly detector instance with `fit` and `detect` methods.
-        - self.plot_queue (queue.Queue): Queue to send data and scores for visualization.
+
+            - self.streaming_active (bool): Flag to control the streaming process.
+
+            - self.queue (queue.Queue): Queue from which data chunks are consumed.
+
+            - self.historical_data (pd.DataFrame): DataFrame storing historical data for processing.
+
+            - self.historical_scores (np.ndarray): Array storing historical anomaly scores.
+
+            - self.window_size (int): Size of the rolling window for preprocessing.
+
+            - self.detector (object): Anomaly detector instance with `fit` and `detect` methods.
+
+            - self.plot_queue (queue.Queue): Queue to send data and scores for visualization.
         """
         
         while self.streaming_active:
@@ -378,14 +461,20 @@ class StreamingSimulation:
     def run(self):
         """
         Executes the streaming anomaly detection simulation.
+
         This method starts two separate threads:
-        1. A streaming thread that simulates or handles incoming data.
-        2. A processing thread that processes the streamed data.
+
+            1. A streaming thread that simulates or handles incoming data.
+
+            2. A processing thread that processes the streamed data.
+
         The simulation remains active until interrupted by a KeyboardInterrupt
         (e.g., pressing Ctrl+C). Upon interruption, the simulation stops gracefully
         by setting `self.streaming_active` to False and joining both threads.
         Additionally, this method handles plotting from the main thread.
+        
         Raises:
+        
             KeyboardInterrupt: If the simulation is manually stopped by the user.
         """
        

@@ -27,16 +27,16 @@ class Encoder(nn.Module):
     
     This class implements an encoder with configurable architecture
     for encoding input features to a latent space representation.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
     """
     def __init__(self, n_features, seq_len, latent_dim=20):
-        """
-        Initialize the encoder model.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-        """
+
         super(Encoder, self).__init__()
         
         self.seq_len, self.n_features = seq_len, n_features
@@ -57,6 +57,7 @@ class Encoder(nn.Module):
             x (torch.Tensor): Input features
             
         Returns:
+
             torch.Tensor: Latent space representation
         """
         x = x.reshape((1, self.seq_len, self.n_features))
@@ -71,16 +72,16 @@ class Decoder(nn.Module):
     
     This class implements a decoder with configurable architecture
     for decoding latent space representation to output features.
+
+    Args:
+            - n_features (int): Dimension of output features
+
+            - seq_len (int): Length of output sequence
+
+            - input_dim (int): Dimension of the latent space representation
     """
     def __init__(self, n_features, seq_len, input_dim=20):
-        """
-        Initialize the decoder model.
-        
-        Args:
-            n_features (int): Dimension of output features
-            seq_len (int): Length of output sequence
-            input_dim (int): Dimension of the latent space representation
-        """
+
         super(Decoder, self).__init__()
 
         self.seq_len, self.input_dim = seq_len, input_dim
@@ -99,9 +100,11 @@ class Decoder(nn.Module):
         Forward pass of the decoder model.
         
         Args:
+
             x (torch.Tensor): Latent space representation
         
         Returns:
+
             torch.Tensor: Output features
         """
         x = x.repeat(self.seq_len, self.n_features)
@@ -118,16 +121,16 @@ class Autoencoder(nn.Module):
     
     This class implements an autoencoder with configurable architecture
     for encoding and decoding input features.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
     """
     def __init__(self, n_features, seq_len, latent_dim=20):
-        """
-        Initialize the autoencoder model.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-        """        
+    
         super(Autoencoder, self).__init__()
         
         self.encoder = Encoder(n_features, seq_len, latent_dim)
@@ -138,9 +141,11 @@ class Autoencoder(nn.Module):
         Forward pass of the autoencoder model.
         
         Args:
+
             x (torch.Tensor): Input features
         
         Returns:
+
             torch.Tensor: Decoded features
         """
         encoded = self.encoder(x)
@@ -155,22 +160,26 @@ class AutoencoderDetector:
     
     This class implements an anomaly detector using an autoencoder
     for detecting anomalies in time series data.
+
+    Args:
+            - n_features (int): Dimension of input features
+
+            - seq_len (int): Length of input sequence
+
+            - latent_dim (int): Dimension of the latent space representation
+
+            - learning_rate (float): Learning rate for training the model
+
+            - batch_size (int): Number of samples per batch
+
+            - epochs (int): Number of epochs for training the model
+
+            - threshold_multiplier (float): Anomaly threshold multiplier
     """
     def __init__(self, n_features, seq_len, latent_dim=20, 
                  learning_rate=0.001, batch_size=32, epochs=20, 
                  threshold_multiplier=3.0):
-        """
-        Initialize the autoencoder-based anomaly detector.
-        
-        Args:
-            n_features (int): Dimension of input features
-            seq_len (int): Length of input sequence
-            latent_dim (int): Dimension of the latent space representation
-            learning_rate (float): Learning rate for training the model
-            batch_size (int): Number of samples per batch
-            epochs (int): Number of epochs for training the model
-            threshold_multiplier (float): Anomaly threshold multiplier
-        """
+
         self.n_features = n_features
         self.seq_len = seq_len
         self.latent_dim = latent_dim
@@ -191,6 +200,7 @@ class AutoencoderDetector:
         Fit the anomaly detector to the input data.
         
         Args:
+
             X (np.ndarray): Input data for training the model
         """
         self.scaler = self.scaler.fit(X)
@@ -247,9 +257,11 @@ class AutoencoderDetector:
         Calculate the anomaly threshold.
         
         Args:
+
             X_scaled (np.ndarray): Scaled input data
             
         Returns:
+
             float: Anomaly threshold
         """
         self.model.eval()
@@ -272,9 +284,11 @@ class AutoencoderDetector:
         Predict anomalies in the input data.
         
         Args:
+
             X (np.ndarray): Input data for anomaly detection
             
         Returns:
+
             np.ndarray: Binary array where 1 indicates anomaly, 0 indicates normal
         """
         X_scaled = self.scaler.transform(X)
@@ -299,9 +313,11 @@ class AutoencoderDetector:
         Calculate anomaly scores for the input data.
         
         Args:
+
             X (np.ndarray): Input data for anomaly detection
         
         Returns:
+
             np.ndarray: Anomaly scores
         """
         X_scaled = self.scaler.transform(X)
@@ -321,6 +337,7 @@ class AutoencoderDetector:
         Save the model to disk.
         
         Args:
+
             path (str): File path to save the model
         """
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -332,6 +349,7 @@ class AutoencoderDetector:
         Load the model from disk.
         
         Args:
+        
             path (str): File path to load the model
         """
         self.model.load_state_dict(torch.load(path))
