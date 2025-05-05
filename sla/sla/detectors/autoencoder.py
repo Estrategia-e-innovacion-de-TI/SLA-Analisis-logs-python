@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import torch
+import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -204,11 +205,9 @@ class AutoencoderDetector:
 
             X (np.ndarray): Input data for training the model
         """
-        self.scaler = self.scaler.fit(X)
-        X_scaled = self.scaler.transform(X)
-        X_scaled = torch.tensor(X_scaled, dtype=torch.float32)
-        X_test_scaled = self.scaler.transform(X_test) if X_test is not None else None
-        X_test_scaled = torch.tensor(X_test_scaled, dtype=torch.float32) if X_test is not None else None
+
+        X_tensor = torch.tensor(X, dtype=torch.float32)
+        X_test_tensor = torch.tensor(X_test, dtype=torch.float32) if X_test is not None else None
         
         self.model = self.model.to(self.device)
         
@@ -218,7 +217,7 @@ class AutoencoderDetector:
             self.model = self.model.train()
 
             train_losses = []
-            for seq_true in X_scaled:
+            for seq_true in X_tensor:
                 seq_true = seq_true.to(self.device)
                 seq_pred = self.model(seq_true)
                 seq_pred = seq_pred.reshape((seq_pred.shape[0],))
@@ -233,7 +232,7 @@ class AutoencoderDetector:
             if X_test is not None:
                 self.model = self.model.eval()
                 with torch.no_grad():
-                    for seq_true in X_test:
+                    for seq_true in X_test_tensor:
 
                         seq_true = seq_true.to(self.device)
                         seq_pred = self.model(seq_true)
@@ -245,13 +244,14 @@ class AutoencoderDetector:
                 print(f'Epoch {epoch}, Train Loss: {np.mean(train_losses):.4f}, Val Loss: {val_loss:.4f}')
             
             train_loss = np.mean(train_losses)
+            print(f'Epoch {epoch}, Train Loss: {train_loss:.4f}')
             self.history['train'].append(train_loss)
             
             if train_loss < best_loss:
                 best_loss = train_loss
                 best_model_wts = copy.deepcopy(self.model.state_dict())
         
-        return self.history
+        return self.history, best_model_wts
         
     
     def _calculate_threshold(self, X_scaled):
@@ -293,18 +293,17 @@ class AutoencoderDetector:
 
             np.ndarray: Binary array where 1 indicates anomaly, 0 indicates normal
         """
-        X_scaled = self.scaler.transform(X)
-        X_tensor = torch.FloatTensor(X_scaled).to(self.device)
+        X_tensor = torch.FloatTensor(X).to(self.device)
         
         self.model.eval()
         
         with torch.no_grad():
             X_pred = self.model(X_tensor).cpu().detach().numpy()
         
-        mse = np.mean(np.square(X_scaled - X_pred), axis=1)
+        mse = np.mean(np.square(X - X_pred), axis=1)
         
         if self.threshold is None:
-            self._calculate_threshold(X_scaled)
+            self._calculate_threshold(X)
         
         anomalies = (mse > self.threshold).astype(int)
         
@@ -344,17 +343,30 @@ class AutoencoderDetector:
         Returns:
             pd.DataFrame: Feature importance scores for each input feature
         """
-        X_scaled = self.scaler.transform(X)
-        X_tensor = torch.FloatTensor(X_scaled).to(self.device)
+        if len(X.shape) == 2:
+            sequences = []
+            for i in range(X.shape[0]):
+                sequence = X[i].reshape(self.seq_len, self.n_features)
+                sequences.append(sequence)
+        else:
+            sequences = X
         
         self.model.eval()
         
-        with torch.no_grad():
-            X_pred = self.model(X_tensor).cpu().detach().numpy()
+        all_errors = []
         
-        squared_errors = np.square(X_scaled - X_pred)
+        for sequence in sequences:
+            sequence_tensor = torch.FloatTensor(sequence).to(self.device)
+            
+            with torch.no_grad():
+                pred = self.model(sequence_tensor).cpu().detach().numpy()
+            
+            squared_error = np.square(sequence - pred)
+            all_errors.append(squared_error)
         
-        feature_mse = np.mean(squared_errors, axis=0)
+        avg_squared_errors = np.mean(all_errors, axis=0)
+        
+        feature_mse = np.mean(avg_squared_errors, axis=0)
         
         total_mse = np.sum(feature_mse)
         if total_mse > 0:
@@ -382,9 +394,7 @@ class AutoencoderDetector:
             
         Returns:
             matplotlib.figure.Figure: The generated plot figure
-        """
-        import matplotlib.pyplot as plt
-        
+        """        
         importance_df = self.feature_importance(X)
         
         if feature_names is not None:
