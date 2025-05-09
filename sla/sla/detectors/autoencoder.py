@@ -2,6 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 import torch
+import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
@@ -194,6 +195,7 @@ class AutoencoderDetector:
         self.criterion = nn.MSELoss(reduction='sum')
         self.scaler = StandardScaler()
         self.threshold = None
+        self.history = {'train': [], 'val': []}
         
     def fit(self, X, X_test=None):
         """
@@ -203,11 +205,9 @@ class AutoencoderDetector:
 
             X (np.ndarray): Input data for training the model
         """
-        self.scaler = self.scaler.fit(X)
-        X_scaled = self.scaler.transform(X)
-        X_scaled = torch.tensor(X_scaled, dtype=torch.float32)
-        X_test_scaled = self.scaler.transform(X_test) if X_test is not None else None
-        X_test_scaled = torch.tensor(X_test_scaled, dtype=torch.float32) if X_test is not None else None
+
+        X_tensor = torch.tensor(X, dtype=torch.float32)
+        X_test_tensor = torch.tensor(X_test, dtype=torch.float32) if X_test is not None else None
         
         self.model = self.model.to(self.device)
         
@@ -217,7 +217,7 @@ class AutoencoderDetector:
             self.model = self.model.train()
 
             train_losses = []
-            for seq_true in X_scaled:
+            for seq_true in X_tensor:
                 seq_true = seq_true.to(self.device)
                 seq_pred = self.model(seq_true)
                 seq_pred = seq_pred.reshape((seq_pred.shape[0],))
@@ -232,7 +232,7 @@ class AutoencoderDetector:
             if X_test is not None:
                 self.model = self.model.eval()
                 with torch.no_grad():
-                    for seq_true in X_test:
+                    for seq_true in X_test_tensor:
 
                         seq_true = seq_true.to(self.device)
                         seq_pred = self.model(seq_true)
@@ -240,16 +240,18 @@ class AutoencoderDetector:
                         loss = self.criterion(seq_pred, seq_true)
                         val_losses.append(loss.item())
                 val_loss = np.mean(val_losses)
+                self.history['val'].append(val_loss)
                 print(f'Epoch {epoch}, Train Loss: {np.mean(train_losses):.4f}, Val Loss: {val_loss:.4f}')
             
             train_loss = np.mean(train_losses)
             print(f'Epoch {epoch}, Train Loss: {train_loss:.4f}')
-
+            self.history['train'].append(train_loss)
+            
             if train_loss < best_loss:
                 best_loss = train_loss
                 best_model_wts = copy.deepcopy(self.model.state_dict())
         
-        return best_model_wts
+        return self.history, best_model_wts
         
     
     def _calculate_threshold(self, X_scaled):
@@ -291,18 +293,17 @@ class AutoencoderDetector:
 
             np.ndarray: Binary array where 1 indicates anomaly, 0 indicates normal
         """
-        X_scaled = self.scaler.transform(X)
-        X_tensor = torch.FloatTensor(X_scaled).to(self.device)
+        X_tensor = torch.FloatTensor(X).to(self.device)
         
         self.model.eval()
         
         with torch.no_grad():
             X_pred = self.model(X_tensor).cpu().detach().numpy()
         
-        mse = np.mean(np.square(X_scaled - X_pred), axis=1)
+        mse = np.mean(np.square(X - X_pred), axis=1)
         
         if self.threshold is None:
-            self._calculate_threshold(X_scaled)
+            self._calculate_threshold(X)
         
         anomalies = (mse > self.threshold).astype(int)
         
@@ -331,6 +332,88 @@ class AutoencoderDetector:
         mse = np.mean(np.square(X_scaled - X_pred), axis=1)
         
         return mse
+    
+    def feature_importance(self, X):
+        """
+        Calculate feature importance based on reconstruction error contribution.
+        
+        Args:
+            X (np.ndarray): Input data for feature importance analysis
+            
+        Returns:
+            pd.DataFrame: Feature importance scores for each input feature
+        """
+        if len(X.shape) == 2:
+            sequences = []
+            for i in range(X.shape[0]):
+                sequence = X[i].reshape(self.seq_len, self.n_features)
+                sequences.append(sequence)
+        else:
+            sequences = X
+        
+        self.model.eval()
+        
+        all_errors = []
+        
+        for sequence in sequences:
+            sequence_tensor = torch.FloatTensor(sequence).to(self.device)
+            
+            with torch.no_grad():
+                pred = self.model(sequence_tensor).cpu().detach().numpy()
+            
+            squared_error = np.square(sequence - pred)
+            all_errors.append(squared_error)
+        
+        avg_squared_errors = np.mean(all_errors, axis=0)
+        
+        feature_mse = np.mean(avg_squared_errors, axis=0)
+        
+        total_mse = np.sum(feature_mse)
+        if total_mse > 0:
+            importance_scores = feature_mse / total_mse
+        else:
+            importance_scores = np.ones_like(feature_mse) / len(feature_mse)
+        
+        feature_names = [f"feature_{i}" for i in range(self.n_features)]
+        importance_df = pd.DataFrame({
+            'feature': feature_names,
+            'importance': importance_scores
+        })
+        importance_df = importance_df.sort_values('importance', ascending=False).reset_index(drop=True)
+        
+        return importance_df
+    
+    def plot_feature_importance(self, X, feature_names=None, top_n=None):
+        """
+        Plot feature importance scores.
+        
+        Args:
+            X (np.ndarray): Input data for feature importance analysis
+            feature_names (list, optional): List of feature names
+            top_n (int, optional): Number of top features to display
+            
+        Returns:
+            matplotlib.figure.Figure: The generated plot figure
+        """        
+        importance_df = self.feature_importance(X)
+        
+        if feature_names is not None:
+            if len(feature_names) == self.n_features:
+                importance_df['feature'] = feature_names
+            else:
+                print(f"Warning: {len(feature_names)} feature names provided but model has {self.n_features} features.")
+        
+        if top_n is not None:
+            importance_df = importance_df.head(top_n)
+        
+        fig, ax = plt.subplots(figsize=(10, 6))
+        ax.barh(importance_df['feature'], importance_df['importance'])
+        ax.set_xlabel('Importance Score')
+        ax.set_ylabel('Feature')
+        ax.set_title('Feature Importance Based on Reconstruction Error')
+        plt.tight_layout()
+        
+        return fig
     
     def save_model(self, path):
         """
