@@ -71,7 +71,7 @@ Detectores disponibles:
     - AutoencoderDetector: Detección basada en autoencoders.
     - IsolationForestDetector: Detección basada en el algoritmo Isolation Forest.
     - RRCFDetector: Detección usando Robust Random Cut Forest.
-    - LNNDetector: Detección usando un enfoque de Redes Neuronales Aprendidas (LNN).
+    - LNNDetector: Detección usando un enfoque de Redes Neuronales Liquidas (LNN).
 
 ### Simulation
 Inicializa el entorno de simulación para logs de análisis SLA y detección de anomalías en flujo (streaming).
