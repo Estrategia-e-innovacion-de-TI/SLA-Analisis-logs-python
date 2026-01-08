@@ -170,3 +170,4 @@ cython_debug/
 .pypirc
 sentinel/docs/notebooks/data/PDTI
 sentinel/docs/notebooks/data/PDTI*
+sentinel/docs/notebooks/Exploracion_PDTI*
