@@ -1,5 +1,5 @@
 [project]
-name = "sla-analisis-logs-python"
+name = "Sentinel"
 version = "0.1.0"
 description = "Analisis de logs en python"
 readme = "README.md"

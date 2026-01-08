@@ -2,94 +2,102 @@
   <img src="docs/images/sentinel icon with text.png" alt="Sentinel Logo" width="200"/>
 </p>
 
+# Sentinel
 
+**Sentinel** is a simple yet powerful tool for analyzing logs and extracting meaningful information.
 
-**Sentinel** es una herramienta simple pero poderosa para analizar logs y extraer información significativa.
-
-Sentinel es una librería de Python diseñada para facilitar el análisis de logs de sistemas, aplicaciones y servicios. Permite a los usuarios extraer, procesar y analizar datos de logs para detectar anomalías, patrones y tendencias que podrían indicar problemas o comportamientos relevantes.  
-Uno de sus principales objetivos es identificar rápidamente si los datos contienen señales que puedan indicar posibles problemas de manera proactiva.
+Sentinel is a Python library designed to simplify the analysis of logs from systems, applications, and services. It allows users to extract, process, and analyze log data to detect anomalies, patterns, and trends that could indicate issues or relevant behaviors.  
+One of its main goals is to quickly identify whether the data contains signals that may proactively indicate potential problems.
 
 ---
 
-## Instalación
+## 🚀 Installation
 
-Para instalar Sentinel, ejecuta:
+To install Sentinel, run:
 
-```bashpdoc 
+```bash
 git clone https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python.git
 cd SLA-Analisis-logs-python
 pip install -e .
 ```
 
-## Modulos
+---
 
-### Ingestion
-Se encarga de transformar archivos de logs crudos y no estructurados en DataFrames de pandas estructurados.
+## 📚 Modules
 
-Incluye un parser base y parsers específicos para:
+### **Ingestion**
+Transforms raw, unstructured log files into structured pandas DataFrames.
 
-    - WAS (WebSphere Application Server)
-    - HSM (Hardware Security Module)
-    - HDC (High-Density Computing)
-    - IBMMQ (IBM Message Queue)
+Includes a base parser and specific parsers for:
 
-Cada parser se adapta al formato y estructura de su tipo de log respectivo.
-Para tipos de logs no soportados, se pueden crear parsers personalizados basados en el parser base.
+- WAS (WebSphere Application Server)
+- HSM (Hardware Security Module)
+- HDC (High-Density Computing)
+- IBMMQ (IBM Message Queue)
 
-### Explorer
-Ofrece herramientas para el análisis inicial de datasets enfocado en la detección de anomalías y validación de datos.
+Custom parsers can be created based on the base parser for unsupported log types.
 
-#### Funciones principales:
+---
 
-    - Detección de Anomalías: Detecta anomalías usando el método de rango intercuartílico (IQR).
+### **Explorer**
+Provides tools for initial dataset analysis focused on anomaly detection and data validation.
 
-    - Pruebas de Calidad de Datos:
+#### Main Features:
+- **Anomaly Detection**: Detects anomalies using the Interquartile Range (IQR) method.
+- **Data Quality Checks**:
+    - Minimum number of records per column.
+    - Presence of a label column.
+    - Percentage of anomalies.
+    - Minimum percentage of non-null values.
+    - Minimum variance thresholds.
+- **Correlation Analysis**: Calculates point-biserial correlation between labels and features.
+- **Model Evaluation**: Measures recall of a logistic regression model using each feature individually.
 
-        - Verifica un número mínimo de registros por columna.
-        - Confirma la presencia de una columna label.
-        - Evalúa el porcentaje de anomalías.
-        - Valida el porcentaje mínimo de valores no nulos.
-        - Evalúa umbrales mínimos de varianza.
+---
 
-    - Análisis de Correlación: Calcula la correlación punto-biserial entre etiquetas y características.
+### **Transformer**
+Provides aggregation methods for structured DataFrames, useful for time series or event data.
 
-    - Evaluación de Modelos: Mide el recall de un modelo de regresión logística utilizando cada característica individualmente.
+Tools:
+- **StringAggregator**: Aggregates string values within a defined time window (e.g., 30 seconds).
+- **RollingAggregator**: Applies rolling window aggregations.
 
-### Transformer
-Proporciona métodos de agregación para DataFrames estructurados, útiles para datos de series de tiempo o eventos.
+---
 
-Herramientas disponibles:
+### **Detectors**
+Includes anomaly detection models tailored for time series data.
 
-    - StringAggregator: Agrega valores de tipo string en una ventana de tiempo definida (por ejemplo, 30 segundos).
-    - RollingAggregator: Aplica agregaciones de ventanas móviles (rolling window).
+Available detectors:
+- **AutoencoderDetector**: Detection based on autoencoders.
+- **IsolationForestDetector**: Detection using Isolation Forest.
+- **RRCFDetector**: Detection using Robust Random Cut Forest.
+- **LNNDetector**: Detection using Liquid Neural Networks (LNN).
 
-### Detectors
-Incluye modelos de detección de anomalías orientados a datos de series de tiempo.
+---
 
-Detectores disponibles:
+### **Simulation**
+Initializes the simulation environment for log analysis and streaming anomaly detection.
 
-    - AutoencoderDetector: Detección basada en autoencoders.
-    - IsolationForestDetector: Detección basada en el algoritmo Isolation Forest.
-    - RRCFDetector: Detección usando Robust Random Cut Forest.
-    - LNNDetector: Detección usando un enfoque de Redes Neuronales Liquidas (LNN).
+Main class:
+- **StreamingSimulation**: Simulates streaming anomaly detection scenarios.
 
-### Simulation
-Inicializa el entorno de simulación para logs de análisis SLA y detección de anomalías en flujo (streaming).
+---
 
-Clase principal:
+### **Visualization**
+Provides tools to visualize:
+- Anomaly detection results.
+- SHAP (SHapley Additive exPlanations) analysis for interpreting model predictions.
 
-    - StreamingSimulation: Simula escenarios de detección de anomalías en flujo.
-    
-### Visualization
-Ofrece herramientas para visualizar:
+---
 
-    - Resultados de detección de anomalías.
-    - Análisis SHAP (SHapley Additive exPlanations) para interpretar predicciones de modelos.
+## 📦 Project Details
+- **Version**: 0.0.1  
+- **Author**: ARQUITECTURA INNOVACIÓN TI  
+- **License**: APACHE 2.0  
 
+---
 
+## 📖 Documentation & Quickstarts
 
-# 📦 Datos del proyecto
-
-    - Versión: 0.0.1
-    - Autor: ARQUITECTURA INNOVACIÓN TI
-    - Licencia: MIT
+- [Full Documentation](https://estrategia-e-innovacion-de-ti.github.io/SLA-Analisis-logs-python/sla.html)  
+- [Quickstart Guide](https://estrategia-e-innovacion-de-ti.github.io/SLA-Analisis-logs-python/sla.html#quickstart)

@@ -168,4 +168,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-sla/docs/notebooks/data/
+sentinel/docs/notebooks/data/PDTI
+sentinel/docs/notebooks/data/PDTI*
