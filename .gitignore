@@ -171,4 +171,4 @@ cython_debug/
 sentinel/docs/notebooks/data/PDTI
 sentinel/docs/notebooks/data/PDTI*
 sentinel/docs/notebooks/Exploracion_PDTI*
-*.DS_Store
+.DS_Store
