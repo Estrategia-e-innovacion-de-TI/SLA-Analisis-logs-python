@@ -90,6 +90,16 @@ Provides tools to visualize:
 
 ---
 
+## Development
+
+### Run tests
+```bash
+pip install -e ".[dev]"
+pytest -q
+```
+
+---
+
 ## 📦 Project Details
 - **Version**: 0.0.1  
 - **Author**: ARQUITECTURA INNOVACIÓN TI  
