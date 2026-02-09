@@ -90,20 +90,18 @@ Provides tools to visualize:
 
 ---
 
-## Development
-
-### Run tests
-```bash
-pip install -e ".[dev]"
-pytest -q
-```
-
----
-
 ## 📦 Project Details
 - **Version**: 0.0.1  
 - **Author**: ARQUITECTURA INNOVACIÓN TI  
 - **License**: APACHE 2.0  
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting pull requests.
+
+For security vulnerabilities, please see our [Security Policy](SECURITY.md).
 
 ---
 
