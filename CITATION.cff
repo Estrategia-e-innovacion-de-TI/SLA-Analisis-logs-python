@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Sentinel"
+type: software
+version: "0.1.0"
+date-released: 2026-02-09
+license: Apache-2.0
+repository-code: "https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python"
+authors:
+  - family-names: "Vergara"
+    given-names: "JM"
+  - family-names: "Laverde"
+    given-names: "N"
+  - family-names: "Aguilar"
+    given-names: "JP"
+  - family-names: "Niño"
+    given-names: "JV"
+  - family-names: "Muñoz"
+    given-names: "JD"
+  - family-names: "Monsalve"
+    given-names: "D"
+  - family-names: "Osorio"
+    given-names: "S"

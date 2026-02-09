@@ -97,6 +97,14 @@ Provides tools to visualize:
 
 ---
 
+## 🤝 Contributing
+
+We welcome contributions from the community! Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting pull requests.
+
+For security vulnerabilities, please see our [Security Policy](SECURITY.md).
+
+---
+
 ## 📖 Documentation & Quickstarts
 
 - [Full Documentation](https://estrategia-e-innovacion-de-ti.github.io/SLA-Analisis-logs-python/sla.html)  
