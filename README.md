@@ -4,6 +4,9 @@
 
 # Sentinel
 
+[![CI](https://img.shields.io/badge/CI-TODO-lightgrey)](TODO-CI-BADGE-LINK)
+[![DOI](https://img.shields.io/badge/DOI-TODO-lightgrey)](TODO-ZENODO-DOI-LINK)
+
 **Sentinel** is a simple yet powerful tool for analyzing logs and extracting meaningful information.
 
 Sentinel is a Python library designed to simplify the analysis of logs from systems, applications, and services. It allows users to extract, process, and analyze log data to detect anomalies, patterns, and trends that could indicate issues or relevant behaviors.  
@@ -13,13 +16,26 @@ One of its main goals is to quickly identify whether the data contains signals t
 
 ## 🚀 Installation
 
-To install Sentinel, run:
+Base install:
 
 ```bash
-git clone https://github.com/Estrategia-e-innovacion-de-TI/SLA-Analisis-logs-python.git
-cd SLA-Analisis-logs-python
-pip install -e .
+pip install .
 ```
+
+Dev/test install:
+
+```bash
+pip install -e ".[dev]"
+pytest -q
+```
+
+Optional deep install (PyTorch):
+
+```bash
+pip install ".[deep]"
+```
+
+If installing from a package index, use `pip install "sentinel[deep]"`.
 
 ---
 
@@ -91,7 +107,7 @@ Provides tools to visualize:
 ---
 
 ## 📦 Project Details
-- **Version**: 0.0.1  
+- **Version**: 0.1.0  
 - **Author**: ARQUITECTURA INNOVACIÓN TI  
 - **License**: APACHE 2.0  
 
